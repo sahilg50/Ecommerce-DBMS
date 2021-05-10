@@ -37,7 +37,10 @@ const App = () => {
 					path="/"
 					render={() => (user ? <HomePage /> : <Redirect to="/signin" />)}
 				></Route>
-				<Route path="/shop" component={ShopPage}></Route>
+				<Route
+					path="/shop"
+					render={() => (user ? <ShopPage /> : <Redirect to="/signin" />)}
+				></Route>
 				<Route
 					exact
 					path="/signin"
