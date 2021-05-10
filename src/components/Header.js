@@ -3,8 +3,13 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from './crown.svg';
 import { auth } from '../firebase';
+import { useSelector } from 'react-redux';
+import { setCurrentUser } from '../redux/user/user';
 
-function Header({ currentUser }) {
+function Header() {
+	const currentUser = useSelector(setCurrentUser).payload.user.currentUser;
+	console.log(currentUser === null);
+
 	return (
 		<HeaderContainer>
 			<LogoContainer>
