@@ -10,15 +10,14 @@ import { auth, createUserProfileDocument } from './firebase';
 
 const App = () => {
 	const [currentUser, setCurrentUser] = useState('');
-
 	const [user] = useAuthState(auth);
+
+	//Data Breach Function to be made.
 
 	useEffect(() => {
 		if (user) {
-			setCurrentUser(user);
-			console.log(user);
-
 			createUserProfileDocument(user);
+			setCurrentUser(user);
 		}
 	}, [user]);
 

@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
-
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
-
 import './sign-up.styles.scss';
+import { createUserProfileDocument, auth } from '../firebase';
 
 const SignUp = () => {
-	const [name, setName] = useState('');
+	const [displayName, setDisplayName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmpassword, setConfirmpassword] = useState('');
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		setName('');
-		setEmail('');
-		setPassword('');
-		setConfirmpassword('');
+
+		if (password !== confirmpassword) {
+			alert("passwords don't match");
+			return;
+		}
+
+		try {
+			const { user } = await auth.createUserWithEmailAndPassword(
+				email,
+				password
+			);
+
+			await createUserProfileDocument(user, displayName);
+			setDisplayName('');
+			setEmail('');
+			setPassword('');
+			setConfirmpassword('');
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	return (
@@ -27,8 +42,8 @@ const SignUp = () => {
 				<FormInput
 					type="text"
 					name="displayName"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
+					value={displayName}
+					onChange={(e) => setDisplayName(e.target.value)}
 					label="Display Name"
 					required
 				/>
