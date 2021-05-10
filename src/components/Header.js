@@ -59,4 +59,5 @@ const OptionsContainer = styled.div`
 
 const Option = styled.div`
 	padding: 10px 15px;
+	cursor: pointer;
 `;

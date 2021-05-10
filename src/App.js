@@ -6,16 +6,19 @@ import ShopPage from './components/ShopPage';
 import Header from './components/Header';
 import SignInAndSignUp from './components/SignInAndSignUp';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './firebase';
+import { auth, createUserProfileDocument } from './firebase';
 
 const App = () => {
 	const [currentUser, setCurrentUser] = useState('');
+
 	const [user] = useAuthState(auth);
 
 	useEffect(() => {
 		if (user) {
 			setCurrentUser(user);
-			console.log(currentUser);
+			console.log(user);
+
+			createUserProfileDocument(user);
 		}
 	}, [user]);
 
