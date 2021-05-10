@@ -3,12 +3,23 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from './crown.svg';
 import { auth } from '../firebase';
-import { useSelector } from 'react-redux';
-import { setCurrentUser } from '../redux/user/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { reset, setCurrentUser } from '../redux/user/user';
 
 function Header() {
 	const currentUser = useSelector(setCurrentUser).payload.user.currentUser;
 	console.log(currentUser === null);
+
+	const dispatch = useDispatch();
+
+	const handleSignOut = () => {
+		auth
+			.signOut()
+			.then(() => {
+				dispatch(reset());
+			})
+			.catch((error) => alert(error.message));
+	};
 
 	return (
 		<HeaderContainer>
@@ -26,7 +37,7 @@ function Header() {
 				</Option>
 				{currentUser ? (
 					<Option>
-						<div onClick={() => auth.signOut()}>SIGN OUT</div>
+						<div onClick={handleSignOut}>SIGN OUT</div>
 					</Option>
 				) : (
 					<Option>
