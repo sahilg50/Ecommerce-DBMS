@@ -7,8 +7,8 @@ import Header from './components/Header';
 import SignInAndSignUp from './components/SignInAndSignUp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentUser, reset, selectCurrentUser } from './redux/user/user';
+import { useDispatch } from 'react-redux';
+import { setCurrentUser, reset } from './redux/user/user';
 
 const App = () => {
 	const [user] = useAuthState(auth);

@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from './crown.svg';
 import { auth } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { reset, setCurrentUser } from '../redux/user/user';
+import CartIcon from './cart-icon';
+import CartDropDown from './cartDropDown';
 
 function Header() {
 	const currentUser = useSelector(setCurrentUser).payload.user.currentUser;
@@ -44,7 +47,9 @@ function Header() {
 						<Link to="/signin">SIGN IN</Link>
 					</Option>
 				)}
+				<CartIcon />
 			</OptionsContainer>
+			<CartDropDown />
 		</HeaderContainer>
 	);
 }
