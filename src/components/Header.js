@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from './crown.svg';
 import { auth } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { reset, setCurrentUser } from '../redux/user/user';
+import { reset, selectCurrentUser } from '../redux/user/user';
 import CartIcon from './cart-icon';
 import CartDropDown from './cartDropDown';
+import { selectHiddenState } from '../redux/cart/cart';
 
 function Header() {
-	const currentUser = useSelector(setCurrentUser).payload.user.currentUser;
+	const currentUser = useSelector(selectCurrentUser);
 	console.log(currentUser === null);
 
 	const dispatch = useDispatch();
@@ -49,7 +50,7 @@ function Header() {
 				)}
 				<CartIcon />
 			</OptionsContainer>
-			<CartDropDown />
+			{useSelector(selectHiddenState) ? <CartDropDown /> : null}
 		</HeaderContainer>
 	);
 }
