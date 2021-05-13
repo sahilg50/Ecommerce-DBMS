@@ -9,17 +9,15 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser, reset } from './redux/user/user';
-import { Reset } from './redux/cart/cart';
 
 const App = () => {
-	const [user] = useAuthState(auth);
+	const [user, loading] = useAuthState(auth);
 	const dispatch = useDispatch();
 
 	//Data Breach Function to be made.
 
 	useEffect(() => {
 		if (user) {
-			dispatch(Reset());
 			createUserProfileDocument(user);
 			dispatch(reset());
 			dispatch(
@@ -29,6 +27,10 @@ const App = () => {
 			);
 		}
 	}, [user]);
+
+	if (loading) {
+		return <h1>Loading...</h1>;
+	}
 
 	return (
 		<div className="App">
