@@ -1,7 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import CustomButton from './CustomButton';
+import { useDispatch } from 'react-redux';
+import { AddItem } from '../redux/cart/cart';
 
-function CollectionItem({ name, price, imageUrl }) {
+function CollectionItem({ item }) {
+	const { id, name, price, imageUrl } = item;
+
+	const dispatch = useDispatch();
+
+	const addToCart = (item) => {
+		dispatch(AddItem({ Item: item }));
+
+		console.log(item);
+	};
+
 	return (
 		<Collectionitem>
 			<Image src={imageUrl} />
@@ -10,6 +23,11 @@ function CollectionItem({ name, price, imageUrl }) {
 				<Name>{name}</Name>
 				<Price>{price}</Price>
 			</CollectionFooter>
+			<CustomButtonDiv>
+				<CustomButton onClick={() => addToCart(item)} inverted>
+					ADD TO CART
+				</CustomButton>
+			</CustomButtonDiv>
 		</Collectionitem>
 	);
 }
@@ -22,6 +40,7 @@ const Collectionitem = styled.div`
 	flex-direction: column;
 	height: 350px;
 	align-items: center;
+	position: relative;
 `;
 
 const Image = styled.img`
@@ -46,4 +65,11 @@ const Name = styled.span`
 `;
 const Price = styled.span`
 	width: 10%;
+`;
+
+const CustomButtonDiv = styled.div`
+	width: 80;
+	opacity: 0.8;
+	position: absolute;
+	top: 255px;
 `;

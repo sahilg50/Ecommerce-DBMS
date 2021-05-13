@@ -9,6 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser, reset } from './redux/user/user';
+import { Reset } from './redux/cart/cart';
 
 const App = () => {
 	const [user] = useAuthState(auth);
@@ -18,6 +19,7 @@ const App = () => {
 
 	useEffect(() => {
 		if (user) {
+			dispatch(Reset());
 			createUserProfileDocument(user);
 			dispatch(reset());
 			dispatch(
