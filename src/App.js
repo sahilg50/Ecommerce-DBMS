@@ -18,6 +18,7 @@ const App = () => {
 
 	useEffect(() => {
 		if (user) {
+			console.log(user);
 			createUserProfileDocument(user);
 			dispatch(reset());
 			dispatch(
@@ -26,7 +27,7 @@ const App = () => {
 				})
 			);
 		}
-	}, [user]);
+	}, [user, dispatch]);
 
 	if (loading) {
 		return <h1>Loading...</h1>;
