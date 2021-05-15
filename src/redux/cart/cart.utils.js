@@ -13,3 +13,20 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 
 	return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
+
+export const totalItems = (cartItems) => {
+	const TotalItems = cartItems.reduce(
+		(accumulatedQuantity, item) => accumulatedQuantity + item.quantity,
+		0
+	);
+	return TotalItems;
+};
+
+export const totalAmount = (cartItems) => {
+	const TotalPrice = cartItems.reduce(
+		(accumulatedQuantity, item) =>
+			accumulatedQuantity + item.price * item.quantity,
+		0
+	);
+	return TotalPrice;
+};

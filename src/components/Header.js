@@ -48,7 +48,7 @@ function Header() {
 						<Link to="/signin">SIGN IN</Link>
 					</Option>
 				)}
-				<CartIcon />
+				{currentUser ? <CartIcon /> : null}
 			</OptionsContainer>
 			{useSelector(selectHiddenState) ? <CartDropDown /> : null}
 		</HeaderContainer>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import HomePage from './components/HomePage';
+import CheckOut from './components/CheckOut';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ShopPage from './components/ShopPage';
 import Header from './components/Header';
@@ -18,6 +19,16 @@ const App = () => {
 
 	useEffect(() => {
 		if (user) {
+			// fetch(`http://localhost:4000/`, {
+			// 	method: 'post',
+			// 	headers: {
+			// 		'Content-Type': 'application/json',
+			// 	},
+			// 	body: JSON.stringify(user),
+			// })
+			// 	.then((response) => response.json())
+			// 	.then((data) => console.log(data));
+
 			console.log(user);
 			createUserProfileDocument(user);
 			dispatch(reset());
@@ -50,6 +61,11 @@ const App = () => {
 					exact
 					path="/signin"
 					render={() => (user ? <Redirect to="/" /> : <SignInAndSignUp />)}
+				></Route>
+				<Route
+					exact
+					path="/checkout"
+					render={() => (user ? <CheckOut /> : <Redirect to="/signin" />)}
 				></Route>
 			</Switch>
 		</div>
