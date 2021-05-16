@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import cart, { TotalPrice, selectCartItems } from '../redux/cart/cart';
+import { TotalPrice, selectCartItems } from '../redux/cart/cart';
 import CheckOutItem from './CheckOutItem';
 
 const CheckOut = () => {
