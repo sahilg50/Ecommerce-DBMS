@@ -52,21 +52,21 @@ const App = () => {
 					exact
 					path="/"
 					render={() => (user ? <HomePage /> : <Redirect to="/signin" />)}
-				></Route>
+				/>
 				<Route
 					path="/shop"
 					render={() => (user ? <ShopPage /> : <Redirect to="/signin" />)}
-				></Route>
+				/>
 				<Route
 					exact
 					path="/signin"
 					render={() => (user ? <Redirect to="/" /> : <SignInAndSignUp />)}
-				></Route>
+				/>
 				<Route
 					exact
 					path="/checkout"
 					render={() => (user ? <CheckOut /> : <Redirect to="/signin" />)}
-				></Route>
+				/>
 			</Switch>
 		</div>
 	);

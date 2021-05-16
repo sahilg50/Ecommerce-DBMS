@@ -5,6 +5,7 @@ import { ClearCartItem } from '../redux/cart/cart';
 import { AddItem, RemoveItem } from '../redux/cart/cart';
 
 const CheckOutItem = ({ cartItem }) => {
+	//Add redux persist || Firebase || mysql to hold the checkout state
 	const { id, name, imageUrl, price, quantity } = cartItem;
 	const dispatch = useDispatch();
 

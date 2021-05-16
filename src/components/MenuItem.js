@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-const MenuItem = ({ title, imageURL, size, history, linkURL, match }) => {
+const MenuItem = ({ title, imageURL, size, history, linkUrl, match }) => {
 	return (
 		<Menu
 			className={`${size}`}
-			onClick={() => history.push(`${match.url}${linkURL}`)}
+			onClick={() => history.push(`${match.url}${linkUrl}`)}
 		>
 			<BackgroundImage style={{ backgroundImage: `url(${imageURL})` }} />
 			<Content>
