@@ -15,6 +15,7 @@ function SignInAndSignUpPage() {
 export default SignInAndSignUpPage;
 
 const SignInAndSignUpContainer = styled.div`
+	padding-top: 80px;
 	width: 850px;
 	display: flex;
 	justify-content: space-between;

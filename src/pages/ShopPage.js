@@ -15,4 +15,6 @@ const ShopPage = () => {
 
 export default ShopPage;
 
-const Shoppage = styled.div``;
+const Shoppage = styled.div`
+	padding-top: 80px;
+`;
