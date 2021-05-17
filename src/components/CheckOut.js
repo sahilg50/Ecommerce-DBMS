@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { TotalPrice, selectCartItems } from '../redux/cart/cart';
 import CheckOutItem from './CheckOutItem';
+import StripCheckoutButton from './Stripe';
 
 const CheckOut = () => {
 	const totalPrice = useSelector(TotalPrice);
@@ -31,6 +32,7 @@ const CheckOut = () => {
 				<CheckOutItem cartItem={cartItem} key={cartItem.id} />
 			))}
 			<Total>TOTAL: ${totalPrice}</Total>
+			<StripCheckoutButton price={totalPrice} />
 		</CheckOutPage>
 	);
 };

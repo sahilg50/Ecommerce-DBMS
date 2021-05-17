@@ -43,11 +43,7 @@ function Header() {
 					<Option>
 						<div onClick={handleSignOut}>SIGN OUT</div>
 					</Option>
-				) : (
-					<Option>
-						<Link to="/signin">SIGN IN</Link>
-					</Option>
-				)}
+				) : null}
 				{currentUser ? <CartIcon /> : null}
 			</OptionsContainer>
 			{useSelector(selectHiddenState) ? <CartDropDown /> : null}

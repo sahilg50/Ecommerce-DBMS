@@ -24,3 +24,6 @@ yarn-error.log*
 
 /src/firebase.js
 git rm --cached /src/firebase.js
+
+src/components/Stripe.js
+git rm --cached src/components/Stripe.js

@@ -10,6 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser, reset } from './redux/user/user';
+import Seller from './components/Seller';
 
 const App = () => {
 	const [user, loading] = useAuthState(auth);
@@ -19,15 +20,22 @@ const App = () => {
 
 	useEffect(() => {
 		if (user) {
-			// fetch(`http://localhost:4000/`, {
-			// 	method: 'post',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 	},
-			// 	body: JSON.stringify(user),
-			// })
-			// 	.then((response) => response.json())
-			// 	.then((data) => console.log(data));
+			const userDetails = {
+				userName: user.displayName,
+				userEmail: user.email,
+				userId: user.uid,
+			};
+
+			fetch(`http://localhost:4000/`, {
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+				},
+				body: JSON.stringify(userDetails),
+			})
+				.then((response) => response.json())
+				.then((data) => console.log(data));
 
 			console.log(user);
 			createUserProfileDocument(user);
@@ -67,6 +75,7 @@ const App = () => {
 					path="/checkout"
 					render={() => (user ? <CheckOut /> : <Redirect to="/signin" />)}
 				/>
+				<Route exact path="/seller" render={() => (true ? <Seller /> : null)} />
 			</Switch>
 		</div>
 	);
