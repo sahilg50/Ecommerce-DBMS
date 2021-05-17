@@ -3,18 +3,18 @@ import styled from 'styled-components';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
-function SignInAndSignUp() {
+function SignInAndSignUpPage() {
 	return (
-		<SignInSignUp>
+		<SignInAndSignUpContainer>
 			<SignIn />
 			<SignUp />
-		</SignInSignUp>
+		</SignInAndSignUpContainer>
 	);
 }
 
-export default SignInAndSignUp;
+export default SignInAndSignUpPage;
 
-const SignInSignUp = styled.div`
+const SignInAndSignUpContainer = styled.div`
 	width: 850px;
 	display: flex;
 	justify-content: space-between;

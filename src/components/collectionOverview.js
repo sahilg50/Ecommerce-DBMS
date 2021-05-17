@@ -8,17 +8,17 @@ function CollectionOverview() {
 	const collections = useSelector(selectCollectionForPreview);
 
 	return (
-		<CollectionOverviewContainer>
+		<CollectionsOverviewContainer>
 			{collections.map(({ id, ...otherCollectionProps }) => (
 				<CollectionPreview key={id} {...otherCollectionProps} />
 			))}
-		</CollectionOverviewContainer>
+		</CollectionsOverviewContainer>
 	);
 }
 
 export default CollectionOverview;
 
-const CollectionOverviewContainer = styled.div`
+const CollectionsOverviewContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 `;

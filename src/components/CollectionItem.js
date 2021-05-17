@@ -16,60 +16,68 @@ function CollectionItem({ item }) {
 	};
 
 	return (
-		<Collectionitem>
-			<Image src={imageUrl} />
+		<CollectionItemContainer>
+			<BackgroundImage className="image" imageUrl={imageUrl} />
 
-			<CollectionFooter>
-				<Name>{name}</Name>
-				<Price>{price}</Price>
-			</CollectionFooter>
-			<CustomButtonDiv>
-				<CustomButton onClick={() => addToCart(item)} inverted>
+			<CollectionFooterContainer>
+				<NameContainer>{name}</NameContainer>
+				<PriceContainer>{price}</PriceContainer>
+			</CollectionFooterContainer>
+			<CollectionFooterContainer>
+				<AddButton onClick={() => addToCart(item)} inverted>
 					ADD TO CART
-				</CustomButton>
-			</CustomButtonDiv>
-		</Collectionitem>
+				</AddButton>
+			</CollectionFooterContainer>
+		</CollectionItemContainer>
 	);
 }
-
 export default CollectionItem;
 
-const Collectionitem = styled.div`
+const CollectionItemContainer = styled.div`
 	width: 22vw;
 	display: flex;
 	flex-direction: column;
 	height: 350px;
 	align-items: center;
 	position: relative;
+	&:hover {
+		.image {
+			opacity: 0.8;
+		}
+		button {
+			opacity: 0.85;
+			display: flex;
+		}
+	}
 `;
 
-const Image = styled.img`
+const AddButton = styled(CustomButton)`
+	width: 80%;
+	opacity: 0.7;
+	position: absolute;
+	top: 255px;
+	display: none;
+`;
+const BackgroundImage = styled.div`
 	width: 100%;
 	height: 95%;
 	background-size: cover;
 	background-position: center;
 	margin-bottom: 5px;
+	background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
-
-const CollectionFooter = styled.div`
+const CollectionFooterContainer = styled.div`
 	width: 100%;
 	height: 5%;
 	display: flex;
 	justify-content: space-between;
 	font-size: 18px;
 `;
-
-const Name = styled.span`
+const NameContainer = styled.span`
 	width: 90%;
 	margin-bottom: 15px;
 `;
-const Price = styled.span`
+const PriceContainer = styled.span`
 	width: 10%;
-`;
-
-const CustomButtonDiv = styled.div`
-	width: 80;
-	opacity: 0.8;
-	position: absolute;
-	top: 255px;
+	text-align: right;
 `;

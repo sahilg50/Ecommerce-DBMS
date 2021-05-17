@@ -4,17 +4,16 @@ import Directory from './Directory';
 
 const HomePage = () => {
 	return (
-		<HomePageCOntainer>
+		<HomePageContainer>
 			<Directory />
-		</HomePageCOntainer>
+		</HomePageContainer>
 	);
 };
 
 export default HomePage;
 
-const HomePageCOntainer = styled.div`
+const HomePageContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 20px 80px;
 `;

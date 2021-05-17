@@ -27,24 +27,21 @@ function Header() {
 
 	return (
 		<HeaderContainer>
-			<LogoContainer>
-				<Link to="/">
-					<Logo src="./crown.svg" />
-				</Link>
+			<LogoContainer to="/">
+				<Logo className="logo" />
 			</LogoContainer>
 			<OptionsContainer>
-				<Option>
-					<Link to="/shop">SHOP</Link>
-				</Option>
-				<Option>
-					<Link to="/shop">CONTACT</Link>
-				</Option>
-				{currentUser ? (
-					<Option>
-						<div onClick={handleSignOut}>SIGN OUT</div>
-					</Option>
-				) : null}
-				{currentUser ? <CartIcon /> : null}
+				<OptionLink to="/shop">SHOP</OptionLink>
+				<OptionLink to="/shop">CONTACT</OptionLink>
+				{
+					currentUser ? (
+						<OptionLink as="div" onClick={handleSignOut}>
+							SIGN OUT
+						</OptionLink>
+					) : null
+					// <OptionLink to="/signin">SIGN IN</OptionLink>
+				}
+				<CartIcon />
 			</OptionsContainer>
 			{useSelector(selectHiddenState) ? <CartDropDown /> : null}
 		</HeaderContainer>
@@ -61,7 +58,7 @@ const HeaderContainer = styled.div`
 	margin-bottom: 25px;
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled(Link)`
 	height: 100%;
 	width: 70px;
 	padding: 25px;
@@ -75,7 +72,7 @@ const OptionsContainer = styled.div`
 	justify-content: flex-end;
 `;
 
-const Option = styled.div`
+const OptionLink = styled(Link)`
 	padding: 10px 15px;
 	cursor: pointer;
 `;

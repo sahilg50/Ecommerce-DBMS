@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import HomePage from './components/HomePage';
-import CheckOut from './components/CheckOut';
+import CheckoutPage from './components/CheckOut';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ShopPage from './components/ShopPage';
 import Header from './components/Header';
-import SignInAndSignUp from './components/SignInAndSignUp';
+import SignInAndSignUpPage from './components/SignInAndSignUp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
 import { useDispatch } from 'react-redux';
@@ -68,12 +68,12 @@ const App = () => {
 				<Route
 					exact
 					path="/signin"
-					render={() => (user ? <Redirect to="/" /> : <SignInAndSignUp />)}
+					render={() => (user ? <Redirect to="/" /> : <SignInAndSignUpPage />)}
 				/>
 				<Route
 					exact
 					path="/checkout"
-					render={() => (user ? <CheckOut /> : <Redirect to="/signin" />)}
+					render={() => (user ? <CheckoutPage /> : <Redirect to="/signin" />)}
 				/>
 				<Route exact path="/seller" render={() => (true ? <Seller /> : null)} />
 			</Switch>

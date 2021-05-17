@@ -7,23 +7,23 @@ import MenuItem from './MenuItem';
 const Directory = () => {
 	const sections = useSelector(selectSections);
 	return (
-		<DirectoryMenu>
+		<DirectoryMenuContainer>
 			{sections.map(({ title, imageUrl, id, size, linkUrl }) => (
 				<MenuItem
 					key={id}
 					title={title}
-					imageURL={imageUrl}
+					imageUrl={imageUrl}
 					size={size}
 					linkUrl={linkUrl}
 				/>
 			))}
-		</DirectoryMenu>
+		</DirectoryMenuContainer>
 	);
 };
 
 export default Directory;
 
-const DirectoryMenu = styled.div`
+const DirectoryMenuContainer = styled.div`
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;

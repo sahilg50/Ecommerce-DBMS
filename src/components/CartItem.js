@@ -4,12 +4,12 @@ import styled from 'styled-components';
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => {
 	return (
 		<CartItemContainer>
-			<Image src={imageUrl} alt="item" />
+			<CartItemImage src={imageUrl} alt="item" />
 			<ItemDetailsContainer>
-				<Name>{name}</Name>
-				<Price>
+				<span>{name}</span>
+				<span>
 					{quantity} x ${price}
-				</Price>
+				</span>
 			</ItemDetailsContainer>
 		</CartItemContainer>
 	);
@@ -24,7 +24,7 @@ const CartItemContainer = styled.div`
 	margin-bottom: 15px;
 `;
 
-const Image = styled.img`
+const CartItemImage = styled.img`
 	width: 30%;
 `;
 
@@ -36,8 +36,3 @@ const ItemDetailsContainer = styled.div`
 	justify-content: center;
 	padding: 10px 20px;
 `;
-
-const Name = styled.span`
-	font-size: 16px;
-`;
-const Price = styled.span``;

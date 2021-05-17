@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 import './sign-in.styles.scss';
@@ -22,8 +23,8 @@ const SignIn = () => {
 	};
 
 	return (
-		<div className="sign-in">
-			<h2>I already have an account</h2>
+		<SignInContainer>
+			<SignInTitle>I already have an account</SignInTitle>
 			<span>Sign in with your email and password</span>
 
 			<form onSubmit={handleSubmit}>
@@ -43,16 +44,31 @@ const SignIn = () => {
 					label="password"
 					required
 				/>
-				<div className="buttons">
+				<ButtonsBarContainer>
 					<CustomButton type="submit"> Sign in </CustomButton>
 					<CustomButton onClick={signInWithGoogle} isGoogleSignIn>
 						{' '}
 						Sign in with Google{' '}
 					</CustomButton>
-				</div>
+				</ButtonsBarContainer>
 			</form>
-		</div>
+		</SignInContainer>
 	);
 };
 
 export default SignIn;
+
+const SignInContainer = styled.div`
+	width: 380px;
+	display: flex;
+	flex-direction: column;
+`;
+
+const SignInTitle = styled.h2`
+	margin: 10px 0;
+`;
+
+const ButtonsBarContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;

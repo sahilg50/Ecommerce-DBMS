@@ -3,6 +3,7 @@ import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 import './sign-up.styles.scss';
 import { createUserProfileDocument, auth } from '../firebase';
+import styled from 'styled-components';
 
 const SignUp = () => {
 	const [displayName, setDisplayName] = useState('');
@@ -35,8 +36,8 @@ const SignUp = () => {
 	};
 
 	return (
-		<div className="sign-up">
-			<h2 className="title">I do not have a account</h2>
+		<SignUpContainer>
+			<SignUpTitle>I do not have a account</SignUpTitle>
 			<span>Sign up with your email and password</span>
 			<form className="sign-up-form" onSubmit={handleSubmit}>
 				<FormInput
@@ -73,8 +74,18 @@ const SignUp = () => {
 				/>
 				<CustomButton type="submit">SIGN UP</CustomButton>
 			</form>
-		</div>
+		</SignUpContainer>
 	);
 };
 
 export default SignUp;
+
+const SignUpContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 380px;
+`;
+
+const SignUpTitle = styled.h2`
+	margin: 10px 0;
+`;

@@ -34,25 +34,27 @@ const CheckOutItem = ({ cartItem }) => {
 	};
 
 	return (
-		<CheckoutItem>
+		<CheckoutItemContainer>
 			<ImageContainer>
 				<img src={imageUrl} alt="item" />
 			</ImageContainer>
-			<Name>{name}</Name>
-			<Quantity>
-				<Arrow onClick={removeItem}>&#10094;</Arrow>
-				<Value>{quantity}</Value>
-				<Arrow onClick={addItem}>&#10095;</Arrow>
-			</Quantity>
-			<Price>{price}</Price>
-			<RemoveButton onClick={handleClearItem}>&#10005;</RemoveButton>
-		</CheckoutItem>
+			<TextContainer>{name}</TextContainer>
+			<QuantityContainer>
+				<div onClick={removeItem}>&#10094;</div>
+				<span>{quantity}</span>
+				<div onClick={addItem}>&#10095;</div>
+			</QuantityContainer>
+			<TextContainer>{price}</TextContainer>
+			<RemoveButtonContainer onClick={handleClearItem}>
+				&#10005;
+			</RemoveButtonContainer>
+		</CheckoutItemContainer>
 	);
 };
 
 export default CheckOutItem;
 
-const CheckoutItem = styled.div`
+export const CheckoutItemContainer = styled.div`
 	width: 100%;
 	display: flex;
 	min-height: 100px;
@@ -61,36 +63,31 @@ const CheckoutItem = styled.div`
 	font-size: 20px;
 	align-items: center;
 `;
-const ImageContainer = styled.div`
+
+export const ImageContainer = styled.div`
 	width: 23%;
 	padding-right: 15px;
-
 	img {
 		width: 100%;
 		height: 100%;
 	}
 `;
 
-const Name = styled.span`
+export const TextContainer = styled.span`
 	width: 23%;
 `;
-const Quantity = styled.span`
+
+export const QuantityContainer = styled(TextContainer)`
 	display: flex;
-	flex-direction: row;
-	width: 23%;
+	span {
+		margin: 0 10px;
+	}
+	div {
+		cursor: pointer;
+	}
 `;
-const Price = styled.span`
-	width: 23%;
-`;
-const RemoveButton = styled.div`
+
+export const RemoveButtonContainer = styled.div`
 	padding-left: 12px;
 	cursor: pointer;
-`;
-
-const Arrow = styled.div`
-	cursor: pointer;
-`;
-
-const Value = styled.div`
-	margin: 0px 10px;
 `;
