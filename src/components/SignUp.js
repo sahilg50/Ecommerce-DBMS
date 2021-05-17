@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
-import './sign-up.styles.scss';
+
 import { createUserProfileDocument, auth } from '../firebase';
 import styled from 'styled-components';
 

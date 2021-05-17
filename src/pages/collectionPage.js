@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { selectCollectionData } from '../redux/shop/shop.reducer';
-import CollectionItem from './CollectionItem';
+import CollectionItem from '../components/CollectionItem';
 
 const CollectionPage = ({ match }) => {
 	const collectionUrlParams = match.params.collectionId;

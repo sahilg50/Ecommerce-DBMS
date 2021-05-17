@@ -40,6 +40,7 @@ const CollectionItemContainer = styled.div`
 	height: 350px;
 	align-items: center;
 	position: relative;
+
 	&:hover {
 		.image {
 			opacity: 0.8;
@@ -47,6 +48,7 @@ const CollectionItemContainer = styled.div`
 		button {
 			opacity: 0.85;
 			display: flex;
+			align-items: center;
 		}
 	}
 `;
@@ -57,6 +59,7 @@ const AddButton = styled(CustomButton)`
 	position: absolute;
 	top: 255px;
 	display: none;
+	left: 10%;
 `;
 const BackgroundImage = styled.div`
 	width: 100%;

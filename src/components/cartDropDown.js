@@ -62,4 +62,7 @@ const CartItemsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	overflow: scroll;
+	::-webkit-scrollbar {
+		display: none;
+	}
 `;

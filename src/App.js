@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import HomePage from './components/HomePage';
-import CheckoutPage from './components/CheckOut';
+import HomePage from './pages/HomePage';
+import CheckoutPage from './pages/CheckoutPage';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import ShopPage from './components/ShopPage';
+import ShopPage from './pages/ShopPage';
 import Header from './components/Header';
-import SignInAndSignUpPage from './components/SignInAndSignUp';
+import SignInAndSignUpPage from './pages/SignInAndSignUpPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
 import { useDispatch } from 'react-redux';

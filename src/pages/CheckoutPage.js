@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { TotalPrice, selectCartItems } from '../redux/cart/cart';
-import CheckOutItem from './CheckOutItem';
-import StripCheckoutButton from './Stripe';
+import CheckOutItem from '../components/CheckOutItem';
+import StripCheckoutButton from '../components/Stripe';
 
 const CheckoutPage = () => {
 	const totalPrice = useSelector(TotalPrice);

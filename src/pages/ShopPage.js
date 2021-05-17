@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
-import CollectionOverview from './collectionOverview';
-import CollectionPage from './collection';
+import CollectionOverview from '../components/collectionOverview';
+import CollectionPage from './collectionPage';
 
 const ShopPage = () => {
 	return (
