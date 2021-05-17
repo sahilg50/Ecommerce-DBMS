@@ -14,7 +14,7 @@ const CartIcon = () => {
 
 	return (
 		<CartContainer onClick={HandleHidden}>
-			<ShoppingIcon className="shopping-icon" />
+			<ShoppingIcon fill="white" className="shopping-icon" />
 			<ItemCountContainer>{TotalItems}</ItemCountContainer>
 		</CartContainer>
 	);

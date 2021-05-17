@@ -51,16 +51,17 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.div`
-	top: 0;
 	position: fixed;
-	background-color: #090b13;
-	flex-direction: row;
+	top: 0;
+	left: 0;
+	right: 0;
 	height: 70px;
-	width: 100%;
+	background-color: #090b13;
 	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
-	margin-bottom: 25px;
 	align-items: center;
+	padding: 0 36px;
 	z-index: 3;
 `;
 

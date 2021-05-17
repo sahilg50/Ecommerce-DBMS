@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import './App.css';
 import HomePage from './pages/HomePage';
 import CheckoutPage from './pages/CheckoutPage';
@@ -49,7 +50,11 @@ const App = () => {
 	}, [user, dispatch]);
 
 	if (loading) {
-		return <h1>Loading...</h1>;
+		return (
+			<LoadContainer>
+				<Load>BUYX</Load>
+			</LoadContainer>
+		);
 	}
 
 	return (
@@ -82,3 +87,16 @@ const App = () => {
 };
 
 export default App;
+
+const LoadContainer = styled.div`
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	justify-content: center;
+`;
+
+const Load = styled.h1`
+	font-size: 150px;
+	letter-spacing: 30px;
+	margin-bottom: 50px;
+`;
