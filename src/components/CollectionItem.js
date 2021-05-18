@@ -21,7 +21,7 @@ function CollectionItem({ item }) {
 
 			<CollectionFooterContainer>
 				<NameContainer>{name}</NameContainer>
-				<PriceContainer>{price}</PriceContainer>
+				<PriceContainer>{price}$</PriceContainer>
 			</CollectionFooterContainer>
 			<CollectionFooterContainer>
 				<AddButton onClick={() => addToCart(item)} inverted>
@@ -34,22 +34,27 @@ function CollectionItem({ item }) {
 export default CollectionItem;
 
 const CollectionItemContainer = styled.div`
-	width: 22vw;
+	width: 18vw;
 	display: flex;
 	flex-direction: column;
 	height: 350px;
 	align-items: center;
 	position: relative;
+	border: 1px solid black;
+	border-radius: 8px;
+	overflow: hidden;
+	transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
 
 	&:hover {
 		.image {
-			opacity: 0.8;
 		}
 		button {
 			opacity: 0.85;
 			display: flex;
 			align-items: center;
 		}
+		box-shadow: rgb(0 0 0 / 60%) 0px 26px 30px -10px,
+			rgb(0 0 0 / 40%) 0px 16px 10px -10px;
 	}
 `;
 
@@ -73,14 +78,11 @@ const CollectionFooterContainer = styled.div`
 	width: 100%;
 	height: 5%;
 	display: flex;
-	justify-content: space-between;
-	font-size: 18px;
+	flex-direction: row;
+	font-size: 20px;
+	justify-content: space-evenly;
+	font-weight: bold;
 `;
-const NameContainer = styled.span`
-	width: 90%;
-	margin-bottom: 15px;
-`;
-const PriceContainer = styled.span`
-	width: 10%;
-	text-align: right;
-`;
+
+const NameContainer = styled.span``;
+const PriceContainer = styled.span``;

@@ -13,6 +13,8 @@ const HomePage = () => {
 export default HomePage;
 
 const HomePageContainer = styled.div`
+	height: 100vh;
+	background-color: #040714;
 	padding-top: 80px;
 	display: flex;
 	flex-direction: column;

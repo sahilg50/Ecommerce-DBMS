@@ -21,24 +21,23 @@ const App = () => {
 
 	useEffect(() => {
 		if (user) {
-			const userDetails = {
-				userName: user.displayName,
-				userEmail: user.email,
-				userId: user.uid,
-			};
+			// const userDetails = {
+			// 	userName: user.displayName,
+			// 	userEmail: user.email,
+			// 	userId: user.uid,
+			// };
 
-			fetch(`http://localhost:4000/`, {
-				method: 'post',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-				body: JSON.stringify(userDetails),
-			})
-				.then((response) => response.json())
-				.then((data) => console.log(data));
+			// fetch(`http://localhost:4000/`, {
+			// 	method: 'post',
+			// 	headers: {
+			// 		'Content-Type': 'application/json',
+			// 		Accept: 'application/json',
+			// 	},
+			// 	body: JSON.stringify(userDetails),
+			// })
+			// 	.then((response) => response.json())
+			// 	.then((data) => console.log(data));
 
-			console.log(user);
 			createUserProfileDocument(user);
 			dispatch(reset());
 			dispatch(
@@ -60,6 +59,7 @@ const App = () => {
 	return (
 		<div className="App">
 			<Header />
+
 			<Switch>
 				<Route
 					exact

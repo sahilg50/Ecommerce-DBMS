@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+
 import userReducer from './user/user';
 import cartReducer from './cart/cart';
 import directoryReducer from './directory/directory.reducer';

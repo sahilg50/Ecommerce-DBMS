@@ -6,7 +6,7 @@ import CollectionPreview from './CollectionPreview';
 
 function CollectionOverview() {
 	const collections = useSelector(selectCollectionForPreview);
-
+	console.log(collections);
 	return (
 		<CollectionsOverviewContainer>
 			{collections.map(({ id, ...otherCollectionProps }) => (
