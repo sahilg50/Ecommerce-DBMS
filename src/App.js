@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import HomePage from './pages/HomePage';
@@ -12,20 +12,35 @@ import { auth, createUserProfileDocument } from './firebase';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser, reset } from './redux/user/user';
 import Seller from './components/Seller';
+import axios from 'axios';
 
 const App = () => {
 	const [user, loading] = useAuthState(auth);
 	const dispatch = useDispatch();
 
 	//Data Breach Function to be made.
+	const Fectch_Categories = async (userDetails) => {
+		try {
+			const response = await axios({
+				method: 'post',
+				url: 'http://localhost:4000/',
+				data: userDetails,
+				responseType: 'json',
+			});
+			console.log(response);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	useEffect(() => {
 		if (user) {
-			// const userDetails = {
-			// 	userName: user.displayName,
-			// 	userEmail: user.email,
-			// 	userId: user.uid,
-			// };
+			const userDetails = {
+				userName: user.displayName,
+				userEmail: user.email,
+				userId: user.uid,
+			};
+			Fectch_Categories(userDetails);
 
 			// fetch(`http://localhost:4000/`, {
 			// 	method: 'post',

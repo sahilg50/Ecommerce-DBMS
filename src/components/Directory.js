@@ -24,45 +24,31 @@ const Directory = () => {
 	// console.log(data_2);
 
 	const Fectch_Categories = async () => {
-		const response = await axios.get(`http://localhost:4000/category`);
-		setCategories(response.data);
+		try {
+			const response = await axios.get(`http://localhost:4000/category`);
+			setCategories(response.data);
+		} catch (error) {
+			console.log('Directory request error');
+		}
 	};
 
 	useEffect(() => {
 		Fectch_Categories();
 	}, []);
 
-	console.log(categories);
-
-	if (categories) {
-		return (
-			<DirectoryMenuContainer>
-				{categories.map(({ category_id, imageUrl, categoryName }) => (
-					<MenuItem
-						key={category_id}
-						title={categoryName}
-						imageUrl={imageUrl}
-						size={''}
-						linkUrl={`shop/${categoryName}`}
-					/>
-				))}
-			</DirectoryMenuContainer>
-		);
-	} else {
-		return (
-			<DirectoryMenuContainer>
-				{sections.map(({ title, imageUrl, id, size, linkUrl }) => (
-					<MenuItem
-						key={id}
-						title={title}
-						imageUrl={imageUrl}
-						size={size}
-						linkUrl={linkUrl}
-					/>
-				))}
-			</DirectoryMenuContainer>
-		);
-	}
+	return (
+		<DirectoryMenuContainer>
+			{categories.map(({ category_id, imageUrl, categoryName }) => (
+				<MenuItem
+					key={category_id}
+					title={categoryName}
+					imageUrl={imageUrl}
+					size={''}
+					linkUrl={`shop/${categoryName}`}
+				/>
+			))}
+		</DirectoryMenuContainer>
+	);
 };
 
 export default Directory;
