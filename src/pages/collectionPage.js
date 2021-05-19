@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const CollectionPage = ({ match }) => {
 	const collectionUrlParams = match.params.collectionId;
-	console.log(collectionUrlParams);
+	// console.log(collectionUrlParams);
 
 	const [fetched_Collection, setFetched_Collection] = useState([]);
 
@@ -29,7 +29,7 @@ const CollectionPage = ({ match }) => {
 	useEffect(() => {
 		Fetch_Collections(collectionUrlParams);
 	}, [collectionUrlParams]);
-	console.log(fetched_Collection);
+	// console.log(fetched_Collection);
 
 	// const collections = useSelector(selectCollectionData);
 	// const filteredcollections = collections[collectionUrlParams];

@@ -9,7 +9,7 @@ const ShopPage = ({ match }) => {
 	// WithRouter is used to make the component a higher order component.
 	//It gives acess to path url isExact etc.
 
-	console.log(match);
+	// console.log(match);
 	return (
 		<Shoppage>
 			<Route exact path="/shop" component={CollectionOverview} />

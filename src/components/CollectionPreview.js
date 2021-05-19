@@ -1,14 +1,12 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import CollectionItem from './CollectionItem';
-import { useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-const CollectionPreview = ({ title, items }) => {
-	const history = useHistory();
+const CollectionPreview = ({ title, items, history, match }) => {
 	return (
 		<CollectionPreviewContainer>
-			<TitleContainer onClick={() => history.push(`/shop/${title}`)}>
+			<TitleContainer onClick={() => history.push(`${match.url}${title}`)}>
 				{title.toUpperCase()}
 			</TitleContainer>
 			<PreviewContainer>
@@ -22,7 +20,7 @@ const CollectionPreview = ({ title, items }) => {
 	);
 };
 
-export default CollectionPreview;
+export default withRouter(CollectionPreview);
 
 const CollectionPreviewContainer = styled.div`
 	display: flex;
