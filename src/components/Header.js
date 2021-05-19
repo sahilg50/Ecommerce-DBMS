@@ -31,6 +31,7 @@ function Header() {
 				<Logo className="logo" />
 			</LogoContainer>
 			<OptionsContainer>
+				<OptionLink to="/">HOME</OptionLink>
 				<OptionLink to="/shop">SHOP</OptionLink>
 				<OptionLink to="/shop">CONTACT</OptionLink>
 				{
@@ -83,4 +84,11 @@ const OptionLink = styled(Link)`
 	padding: 10px 15px;
 	cursor: pointer;
 	color: white;
+	border-radius: 2px;
+
+	margin-right: 10px;
+	&:hover {
+		background-color: #dbd9d9;
+		color: black;
+	}
 `;

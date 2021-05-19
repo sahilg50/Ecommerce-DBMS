@@ -47,7 +47,7 @@ const Content = styled.div`
 	display: grid;
 	grid-gap: 25px;
 	gap: 25px;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-template-columns: repeat(5, minmax(0, 1fr));
 	@media (max-width: 768px) {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
@@ -55,7 +55,6 @@ const Content = styled.div`
 
 const Wrap = styled.div`
 	padding-top: 56.25%;
-	border-radius: 10px;
 	box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
 		rgb(0 0 0 / 73%) 0px 16px 10px -10px;
 	cursor: pointer;

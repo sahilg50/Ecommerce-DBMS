@@ -16,7 +16,7 @@ export default HomePage;
 
 const HomePageContainer = styled.div`
 	height: 100vh;
-	background-color: #040714;
+	background-image: linear-gradient(to top, whitesmoke, black);
 	padding-top: 80px;
 	display: flex;
 	flex-direction: column;
