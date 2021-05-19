@@ -39,9 +39,16 @@ const CollectionPage = ({ match }) => {
 		<CollectionPageContainer>
 			<CollectionTitle>{collectionUrlParams.toUpperCase()}</CollectionTitle>
 			<CollectionItemsContainer>
-				{fetched_Collection.map((item) => (
-					<CollectionItem key={item.productId} item={item} />
-				))}
+				{fetched_Collection.map((fetched_item) => {
+					const item = {
+						name: fetched_item.productName,
+						id: fetched_item.productId,
+						imageUrl: fetched_item.productImage,
+						price: fetched_item.productPrice,
+					};
+
+					return <CollectionItem key={item.productId} item={item} />;
+				})}
 			</CollectionItemsContainer>
 		</CollectionPageContainer>
 	);

@@ -5,11 +5,7 @@ import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/cart/cart';
 
 function CollectionItem({ item }) {
-	const { productName, productPrice, productImage } = item;
-
-	const name = productName;
-	const price = productPrice;
-	const imageUrl = productImage;
+	const { name, price, imageUrl } = item;
 
 	const dispatch = useDispatch();
 
