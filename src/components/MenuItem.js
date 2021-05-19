@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
+const MenuItem = ({ title, imageUrl, history, linkUrl, match }) => {
 	return (
 		<MenuItemContainer
-			className={`${size}`}
+			size={false}
 			onClick={() => history.push(`${match.url}${linkUrl}`)}
 		>
 			<BackgroundImageContainer
@@ -23,7 +23,7 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
 export default withRouter(MenuItem);
 
 const MenuItemContainer = styled.div`
-	height: ${({ size }) => (size ? '380px' : '240px')};
+	height: ${(props) => (props.size ? '380px' : '240px')};
 	min-width: 30%;
 	overflow: hidden;
 	flex: 1 1 auto;
@@ -33,6 +33,7 @@ const MenuItemContainer = styled.div`
 	border: 1px solid darkgrey;
 	margin: 0 7.5px 15px;
 	overflow: hidden;
+	position: relative;
 	&:hover {
 		cursor: pointer;
 		& .background-image {

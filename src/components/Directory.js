@@ -43,7 +43,6 @@ const Directory = () => {
 					key={category_id}
 					title={categoryName}
 					imageUrl={imageUrl}
-					size={''}
 					linkUrl={`shop/${categoryName}`}
 				/>
 			))}

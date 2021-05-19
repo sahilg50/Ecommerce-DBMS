@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Brands from '../components/Brands';
 import Directory from '../components/Directory';
 
 const HomePage = () => {
 	return (
 		<HomePageContainer>
 			<Directory />
+			<Brands />
 		</HomePageContainer>
 	);
 };
@@ -19,4 +21,8 @@ const HomePageContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow-y: scroll;
+	::-webkit-scrollbar {
+		display: none;
+	}
 `;
