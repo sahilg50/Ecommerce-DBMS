@@ -16,6 +16,6 @@ const ShopPage = () => {
 export default ShopPage;
 
 const Shoppage = styled.div`
-	padding-top: 80px;
-	margin: 0 30px;
+	padding: 80px 30px 10px 30px;
+	background-color: lightgray;
 `;

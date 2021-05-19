@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import HomePage from './pages/HomePage';
@@ -19,7 +19,7 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	//Data Breach Function to be made.
-	const Fectch_Categories = async (userDetails) => {
+	const Fectch_User = async (userDetails) => {
 		try {
 			const response = await axios({
 				method: 'post',
@@ -27,20 +27,20 @@ const App = () => {
 				data: userDetails,
 				responseType: 'json',
 			});
-			console.log(response);
+			console.log(response.data);
 		} catch (error) {
-			console.log(error);
+			console.log('User fetch error');
 		}
 	};
 
 	useEffect(() => {
 		if (user) {
-			const userDetails = {
-				userName: user.displayName,
-				userEmail: user.email,
-				userId: user.uid,
-			};
-			Fectch_Categories(userDetails);
+			// const userDetails = {
+			// 	userName: user.displayName,
+			// 	userEmail: user.email,
+			// 	userId: user.uid,
+			// };
+			// Fectch_User(userDetails);
 
 			// fetch(`http://localhost:4000/`, {
 			// 	method: 'post',

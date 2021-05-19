@@ -57,7 +57,7 @@ const HeaderContainer = styled.div`
 	left: 0;
 	right: 0;
 	height: 70px;
-	background-color: #090b13;
+	background-color: #121212;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

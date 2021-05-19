@@ -55,8 +55,8 @@ const Content = styled.div`
 
 const Wrap = styled.div`
 	padding-top: 56.25%;
-	box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
-		rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+	box-shadow: rgb(0 0 0 / 10%) 0px 40px 58px -16px,
+		rgb(0 0 0 / 10%) 0px 30px 22px -10px;
 	cursor: pointer;
 	overflow: hidden;
 	position: relative;
@@ -75,9 +75,9 @@ const Wrap = styled.div`
 		top: 0;
 	}
 	&:hover {
-		box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px,
-			rgb(0 0 0 / 72%) 0px 30px 22px -10px;
-		transform: scale(1.05);
-		border-color: rgba(249, 249, 249, 0.8);
+		box-shadow: rgb(0 0 0 / 30%) 0px 40px 58px -16px,
+			rgb(0 0 0 / 30%) 0px 30px 22px -10px;
+		transform: scale(1.04);
+		border-color: rgba(249, 249, 249, 0.3);
 	}
 `;

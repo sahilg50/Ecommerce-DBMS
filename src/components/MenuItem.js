@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-const MenuItem = ({ title, imageUrl, history, linkUrl, match }) => {
+const MenuItem = ({ title, imageUrl, history, size, linkUrl, match }) => {
 	return (
 		<MenuItemContainer
-			size={false}
+			size={size}
 			onClick={() => history.push(`${match.url}${linkUrl}`)}
 		>
 			<BackgroundImageContainer
@@ -30,7 +30,7 @@ const MenuItemContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid darkgrey;
+	border: 3px solid rgba(249, 249, 249, 0.1);
 	margin: 0 7.5px 15px;
 	overflow: hidden;
 	position: relative;

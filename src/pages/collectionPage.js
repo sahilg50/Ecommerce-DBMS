@@ -1,25 +1,46 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+// import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { selectCollectionData } from '../redux/shop/shop.reducer';
+// import { selectCollectionData } from '../redux/shop/shop.reducer';
 import CollectionItem from '../components/CollectionItem';
+import axios from 'axios';
 
 const CollectionPage = ({ match }) => {
 	const collectionUrlParams = match.params.collectionId;
+	console.log(collectionUrlParams);
 
-	const collections = useSelector(selectCollectionData);
+	const [fetched_Collection, setFetched_Collection] = useState([]);
 
-	const filteredcollections = collections[collectionUrlParams];
+	const Fetch_Collections = async (collectionUrlParams) => {
+		try {
+			const response = await axios({
+				method: 'post',
+				url: 'http://localhost:4000/collections',
+				data: {
+					collection: collectionUrlParams,
+				},
+			});
+			setFetched_Collection(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-	console.log(filteredcollections);
+	useEffect(() => {
+		Fetch_Collections(collectionUrlParams);
+	}, [collectionUrlParams]);
+	console.log(fetched_Collection);
 
-	const { title, items } = filteredcollections;
+	// const collections = useSelector(selectCollectionData);
+	// const filteredcollections = collections[collectionUrlParams];
+	// const { title, items } = filteredcollections;
+
 	return (
 		<CollectionPageContainer>
-			<CollectionTitle>{title}</CollectionTitle>
+			<CollectionTitle>{collectionUrlParams.toUpperCase()}</CollectionTitle>
 			<CollectionItemsContainer>
-				{items.map((item) => (
-					<CollectionItem key={item.id} item={item} />
+				{fetched_Collection.map((item) => (
+					<CollectionItem key={item.productId} item={item} />
 				))}
 			</CollectionItemsContainer>
 		</CollectionPageContainer>

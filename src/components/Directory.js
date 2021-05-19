@@ -38,11 +38,21 @@ const Directory = () => {
 
 	return (
 		<DirectoryMenuContainer>
-			{categories.map(({ category_id, imageUrl, categoryName }) => (
+			{categories.slice(0, 3).map(({ category_id, imageUrl, categoryName }) => (
 				<MenuItem
 					key={category_id}
 					title={categoryName}
 					imageUrl={imageUrl}
+					size={''}
+					linkUrl={`shop/${categoryName}`}
+				/>
+			))}
+			{categories.slice(3, 5).map(({ category_id, imageUrl, categoryName }) => (
+				<MenuItem
+					key={category_id}
+					title={categoryName}
+					imageUrl={imageUrl}
+					size={'true'}
 					linkUrl={`shop/${categoryName}`}
 				/>
 			))}

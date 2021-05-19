@@ -5,7 +5,11 @@ import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/cart/cart';
 
 function CollectionItem({ item }) {
-	const { name, price, imageUrl } = item;
+	const { productName, productPrice, productImage } = item;
+
+	const name = productName;
+	const price = productPrice;
+	const imageUrl = productImage;
 
 	const dispatch = useDispatch();
 
@@ -18,11 +22,11 @@ function CollectionItem({ item }) {
 	return (
 		<CollectionItemContainer>
 			<BackgroundImage className="image" imageUrl={imageUrl} />
-
 			<CollectionFooterContainer>
 				<NameContainer>{name}</NameContainer>
 				<PriceContainer>{price}$</PriceContainer>
 			</CollectionFooterContainer>
+
 			<CollectionFooterContainer>
 				<AddButton onClick={() => addToCart(item)} inverted>
 					ADD TO CART
