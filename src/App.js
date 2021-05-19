@@ -35,23 +35,12 @@ const App = () => {
 
 	useEffect(() => {
 		if (user) {
-			// const userDetails = {
-			// 	userName: user.displayName,
-			// 	userEmail: user.email,
-			// 	userId: user.uid,
-			// };
-			// Fectch_User(userDetails);
-
-			// fetch(`http://localhost:4000/`, {
-			// 	method: 'post',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 		Accept: 'application/json',
-			// 	},
-			// 	body: JSON.stringify(userDetails),
-			// })
-			// 	.then((response) => response.json())
-			// 	.then((data) => console.log(data));
+			const userDetails = {
+				userName: user.displayName,
+				userEmail: user.email,
+				userId: user.uid,
+			};
+			Fectch_User(userDetails);
 
 			createUserProfileDocument(user);
 			dispatch(reset());

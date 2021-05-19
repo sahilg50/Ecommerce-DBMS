@@ -3,8 +3,13 @@ import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 import CollectionOverview from '../components/collectionOverview';
 import CollectionPage from './collectionPage';
+import { withRouter } from 'react-router-dom';
 
-const ShopPage = () => {
+const ShopPage = ({ match }) => {
+	// WithRouter is used to make the component a higher order component.
+	//It gives acess to path url isExact etc.
+
+	console.log(match);
 	return (
 		<Shoppage>
 			<Route exact path="/shop" component={CollectionOverview} />
@@ -13,7 +18,7 @@ const ShopPage = () => {
 	);
 };
 
-export default ShopPage;
+export default withRouter(ShopPage);
 
 const Shoppage = styled.div`
 	padding: 80px 30px 10px 30px;

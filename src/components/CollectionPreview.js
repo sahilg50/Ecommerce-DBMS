@@ -1,11 +1,16 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import CollectionItem from './CollectionItem';
+import { useHistory } from 'react-router-dom';
 
 const CollectionPreview = ({ title, items }) => {
+	const history = useHistory();
 	return (
 		<CollectionPreviewContainer>
-			<TitleContainer>{title.toUpperCase()}</TitleContainer>
+			<TitleContainer onClick={() => history.push(`/shop/${title}`)}>
+				{title.toUpperCase()}
+			</TitleContainer>
 			<PreviewContainer>
 				{items
 					.filter((item, idx) => idx < 5)

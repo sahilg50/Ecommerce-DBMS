@@ -47,7 +47,7 @@ const CollectionPage = ({ match }) => {
 						price: fetched_item.productPrice,
 					};
 
-					return <CollectionItem key={item.productId} item={item} />;
+					return <CollectionItem key={item.id} item={item} />;
 				})}
 			</CollectionItemsContainer>
 		</CollectionPageContainer>
