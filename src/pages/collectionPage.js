@@ -47,7 +47,7 @@ const CollectionPage = ({ match }) => {
 						price: fetched_item.productPrice,
 					};
 
-					return <CollectionItem key={item.id} item={item} />;
+					return <CollectionItem key={item.id} item={item} width={''} />;
 				})}
 			</CollectionItemsContainer>
 		</CollectionPageContainer>
@@ -59,16 +59,25 @@ export default CollectionPage;
 const CollectionPageContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	width: 100%;
+	height: 100%;
 `;
 
 const CollectionTitle = styled.h2`
 	font-size: 38px;
 	margin: 0 auto 30px;
+	color: whitesmoke;
+	font-size: 40px;
+	&:hover {
+		cursor: pointer;
+		color: red;
+	}
 `;
 
 const CollectionItemsContainer = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
+	width: 100%;
 	grid-gap: 10px;
 	& > div {
 		margin-bottom: 30px;

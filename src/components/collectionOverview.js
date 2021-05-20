@@ -9,7 +9,6 @@ const CollectionOverview = () => {
 	const [total_categories, setTotal_categories] = useState([]);
 
 	// const collections = useSelector(selectCollectionForPreview);
-
 	const Fetch_Total_Number_of_Categories = async () => {
 		try {
 			const response = await axios({
@@ -17,6 +16,7 @@ const CollectionOverview = () => {
 				url: `http://localhost:4000/total_categories`,
 				responseType: 'json',
 			});
+
 			setTotal_categories(response.data);
 		} catch (error) {
 			console.log('total categories request error');
@@ -26,15 +26,6 @@ const CollectionOverview = () => {
 	useEffect(() => {
 		Fetch_Total_Number_of_Categories();
 	}, []);
-
-	// const total_categoriess = [
-	// 	{ category_id: '1', categoryName: 'hats' },
-	// 	{ category_id: '2', categoryName: 'jackets' },
-	// 	{ category_id: '3', categoryName: 'sneakers' },
-	// 	{ category_id: '4', categoryName: 'womens' },
-	// 	{ category_id: '5', categoryName: 'mens' },
-	// 	{ category_id: '6', categoryName: 'bags' },
-	// ];
 
 	return (
 		<CollectionsOverviewContainer>

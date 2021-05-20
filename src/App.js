@@ -55,7 +55,7 @@ const App = () => {
 	if (loading) {
 		return (
 			<LoadContainer>
-				<Load>BUYX</Load>
+				<Load>SHIP SHOP</Load>
 			</LoadContainer>
 		);
 	}

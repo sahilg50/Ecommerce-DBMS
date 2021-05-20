@@ -3,58 +3,92 @@ import styled from 'styled-components';
 import CustomButton from './CustomButton';
 import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/cart/cart';
+import axios from 'axios';
 
-function CollectionItem({ item }) {
+const CollectionItem = ({ item, width }) => {
 	const { name, price, imageUrl } = item;
 
 	const dispatch = useDispatch();
 
+	//Update Items in the cart
+	const ADD_Cart_Item = async (item) => {
+		try {
+			const response = await axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				url: 'http://localhost:4000/add_item_to_cart',
+				data: item,
+				responseType: 'json',
+			});
+			console.log(response);
+		} catch (error) {
+			console.log('User fetch error');
+		}
+	};
+
+	// const Fetch_Cart_Item = (item) => {
+	// 	console.log(item);
+	// 	fetch('http://localhost:4000/Cart_Item', {
+	// 		method: 'POST',
+	// 		headers: { 'Content-Type': 'application/json' },
+	// 		body: JSON.stringify({ item: item }),
+	// 	}).then((response) => response.json());
+	// };
+	// // .then((data) => set.PostId(data.id));
+
 	const addToCart = (item) => {
 		dispatch(AddItem({ Item: item }));
-
-		console.log(item);
+		ADD_Cart_Item(item);
 	};
 
 	return (
-		<CollectionItemContainer>
+		<CollectionItemContainer width={width}>
 			<BackgroundImage className="image" imageUrl={imageUrl} />
 			<CollectionFooterContainer>
 				<NameContainer>{name}</NameContainer>
 				<PriceContainer>{price}$</PriceContainer>
 			</CollectionFooterContainer>
 
-			<CollectionFooterContainer>
+			<div>
+				<InfoButton inverted>More Info</InfoButton>
 				<AddButton onClick={() => addToCart(item)} inverted>
 					ADD TO CART
 				</AddButton>
-			</CollectionFooterContainer>
+			</div>
 		</CollectionItemContainer>
 	);
-}
+};
 export default CollectionItem;
 
 const CollectionItemContainer = styled.div`
-	width: 18vw;
+	width: ${(props) => (props.width ? '14%' : '60%')};
 	display: flex;
 	flex-direction: column;
-	height: 350px;
+	height: 300px;
 	align-items: center;
 	position: relative;
-	border: 1px solid black;
+	border: 1px solid #3d3b3b;
 	border-radius: 8px;
 	overflow: hidden;
 	transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+	color: white;
 
 	&:hover {
 		.image {
+			opacity: 0.3;
+			transition: opacity 300ms ease-in-out 0s;
 		}
 		button {
 			opacity: 0.85;
 			display: flex;
+			flex-direction: column;
 			align-items: center;
 		}
-		box-shadow: rgb(0 0 0 / 60%) 0px 26px 30px -10px,
-			rgb(0 0 0 / 40%) 0px 16px 10px -10px;
+
+		box-shadow: rgb(249 249 249 / 5%) 0px 26px 30px -10px,
+			rgb(249 249 249 / 40%) 0px 16px 10px -10px;
+
+		border-color: rgba(249, 249, 249, 0.9);
 	}
 `;
 
@@ -62,26 +96,37 @@ const AddButton = styled(CustomButton)`
 	width: 80%;
 	opacity: 0.7;
 	position: absolute;
-	top: 255px;
+	top: 150px;
 	display: none;
 	left: 10%;
 `;
+const InfoButton = styled(CustomButton)`
+	width: 80%;
+	opacity: 0.7;
+	position: absolute;
+	top: 60px;
+	display: none;
+	left: 10%;
+`;
+
 const BackgroundImage = styled.div`
 	width: 100%;
-	height: 95%;
+	height: 90%;
 	background-size: cover;
 	background-position: center;
 	margin-bottom: 5px;
 	background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
+
 const CollectionFooterContainer = styled.div`
 	width: 100%;
-	height: 5%;
+	height: 10%;
 	display: flex;
 	flex-direction: row;
 	font-size: 20px;
 	justify-content: space-evenly;
 	font-weight: bold;
+	background-color: black;
 `;
 
 const NameContainer = styled.span``;

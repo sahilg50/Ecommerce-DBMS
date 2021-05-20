@@ -44,7 +44,7 @@ const CollectionPreview = ({ categoryName, history, match }) => {
 							imageUrl: fetched_item.productImage,
 							price: fetched_item.productPrice,
 						};
-						return <CollectionItem key={item.id} item={item} />;
+						return <CollectionItem key={item.id} item={item} width={'true'} />;
 					})}
 			</PreviewContainer>
 		</CollectionPreviewContainer>
@@ -57,14 +57,19 @@ const CollectionPreviewContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 30px;
+	max-height: 500px;
 `;
 const TitleContainer = styled.h1`
-	font-size: 28px;
-	margin-bottom: 25px;
+	margin-top: 0;
+	font-size: 40px;
+	margin-bottom: 20px;
 	cursor: pointer;
+	color: whitesmoke;
 	&:hover {
-		color: grey;
+		color: red;
 	}
+
+	width: fit-content;
 `;
 const PreviewContainer = styled.div`
 	display: flex;
