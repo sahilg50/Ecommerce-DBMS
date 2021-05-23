@@ -3,28 +3,11 @@ import styled from 'styled-components';
 import CustomButton from './CustomButton';
 import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/cart/cart';
-import axios from 'axios';
 
 const CollectionItem = ({ item, width }) => {
 	const { name, price, imageUrl } = item;
 
 	const dispatch = useDispatch();
-
-	//Update Items in the cart
-	const ADD_Cart_Item = async (item) => {
-		try {
-			const response = await axios({
-				method: 'post',
-				headers: { 'Content-Type': 'application/json' },
-				url: 'http://localhost:4000/add_item_to_cart',
-				data: item,
-				responseType: 'json',
-			});
-			console.log(response);
-		} catch (error) {
-			console.log('User fetch error');
-		}
-	};
 
 	// const Fetch_Cart_Item = (item) => {
 	// 	console.log(item);
@@ -38,7 +21,6 @@ const CollectionItem = ({ item, width }) => {
 
 	const addToCart = (item) => {
 		dispatch(AddItem({ Item: item }));
-		ADD_Cart_Item(item);
 	};
 
 	return (

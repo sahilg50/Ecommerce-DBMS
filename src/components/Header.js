@@ -5,22 +5,22 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from './crown.svg';
 import { auth } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { reset, selectCurrentUser } from '../redux/user/user';
+import { resetUser, selectCurrentUser } from '../redux/user/user';
 import CartIcon from './cart-icon';
 import CartDropDown from './cartDropDown';
 import { selectHiddenState } from '../redux/cart/cart';
-import { Reset } from '../redux/cart/cart';
+import { ResetCart } from '../redux/cart/cart';
 
 function Header() {
 	const currentUser = useSelector(selectCurrentUser);
 	const dispatch = useDispatch();
 
 	const handleSignOut = () => {
-		dispatch(Reset());
+		dispatch(ResetCart());
 		auth
 			.signOut()
 			.then(() => {
-				dispatch(reset());
+				dispatch(resetUser());
 			})
 			.catch((error) => alert(error.message));
 	};

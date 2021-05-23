@@ -10,6 +10,7 @@ const ShopPage = ({ match }) => {
 	//It gives acess to path url isExact etc.
 
 	// console.log(match);
+
 	return (
 		<Shoppage>
 			<Route exact path="/shop" component={CollectionOverview} />

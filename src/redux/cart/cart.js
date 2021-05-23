@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import {
 	addItemToCart,
 	totalItems,
 	totalAmount,
 	removeItemFromCart,
+	clearCartItem,
 } from './cart.utils';
 
 const initialState = {
@@ -33,22 +35,31 @@ const cartSlice = createSlice({
 			state.totalItems = totalItems(state.cartItems);
 			state.cartAmount = totalAmount(state.cartItems);
 		},
-		Reset: (state) => {
+		ResetCart: (state) => {
 			state.hidden = false;
 			state.cartItems = [];
 		},
 		ClearCartItem: (state, action) => {
-			state.cartItems = state.cartItems.filter(
-				(cartItem) => cartItem.id !== action.payload.ID
-			);
+			state.cartItems = clearCartItem(state.cartItems, action.payload.ID);
+			state.totalItems = totalItems(state.cartItems);
+			state.cartAmount = totalAmount(state.cartItems);
+		},
+		SetCartitems: (state, action) => {
+			state.cartItems = action.payload.CartItems;
 			state.totalItems = totalItems(state.cartItems);
 			state.cartAmount = totalAmount(state.cartItems);
 		},
 	},
 });
 
-export const { ToggleHiddenState, AddItem, Reset, ClearCartItem, RemoveItem } =
-	cartSlice.actions;
+export const {
+	ToggleHiddenState,
+	AddItem,
+	ResetCart,
+	ClearCartItem,
+	RemoveItem,
+	SetCartitems,
+} = cartSlice.actions;
 
 export const selectHiddenState = (state) => state.cart.hidden;
 

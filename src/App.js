@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import HomePage from './pages/HomePage';
@@ -10,16 +10,19 @@ import SignInAndSignUpPage from './pages/SignInAndSignUpPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
 import { useDispatch } from 'react-redux';
-import { setCurrentUser, reset } from './redux/user/user';
+import { setCurrentUser, resetUser } from './redux/user/user';
 import Seller from './components/Seller';
 import axios from 'axios';
+import { SetCartitems, ResetCart } from './redux/cart/cart';
 
 const App = () => {
 	const [user, loading] = useAuthState(auth);
 	const dispatch = useDispatch();
+	const [retrievedCartItems, setRetrievedCartItems] = useState([]);
+	const tempCart = [];
 
 	//Data Breach Function to be made.
-	const Fectch_User = async (userDetails) => {
+	const Fetch_User = async (userDetails) => {
 		try {
 			const response = await axios({
 				method: 'post',
@@ -33,6 +36,22 @@ const App = () => {
 		}
 	};
 
+	const Retrieve_Cart_Items = async () => {
+		try {
+			const response = await axios({
+				method: 'get',
+				// headers: { 'Content-Type': 'application/json' },
+				url: 'http://localhost:4000/retrieve_cart_items',
+				// data: 'Retrieve Request Active',
+				responseType: 'json',
+			});
+			console.log(response.data);
+			setRetrievedCartItems(response.data);
+		} catch (error) {
+			console.log('cart Items cannot be retrieved');
+		}
+	};
+
 	useEffect(() => {
 		if (user) {
 			const userDetails = {
@@ -40,17 +59,31 @@ const App = () => {
 				userEmail: user.email,
 				userId: user.uid,
 			};
-			Fectch_User(userDetails);
+			Fetch_User(userDetails);
 
 			createUserProfileDocument(user);
-			dispatch(reset());
+			dispatch(resetUser());
 			dispatch(
 				setCurrentUser({
 					currentUser: user,
 				})
 			);
+
+			dispatch(ResetCart());
+			Retrieve_Cart_Items();
 		}
 	}, [user, dispatch]);
+
+	retrievedCartItems.map((item) =>
+		tempCart.push({
+			id: item.productid,
+			name: item.productName,
+			price: item.productPrice,
+			imageUrl: item.productImage,
+			quantity: item.Quantity,
+		})
+	);
+	dispatch(SetCartitems({ CartItems: tempCart }));
 
 	if (loading) {
 		return (
