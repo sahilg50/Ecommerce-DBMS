@@ -5,7 +5,6 @@ import twitter from './twitter.png';
 import facebook from './facebook.png';
 import instagram from './instagram.png';
 import youtube from './youtube.png';
-// import { ReactComponent as Logo } from './crown.svg';
 
 import Select from 'react-select';
 
@@ -35,7 +34,20 @@ const Footer = () => {
 
 	const States = [];
 	const Contacts = [];
-	const options = [];
+	const options = [
+		{ value: 'chocolate', label: 'Chocolate' },
+		{ value: 'strawberry', label: 'Strawberry' },
+		{ value: 'vanilla', label: 'Vanilla' },
+		{ value: 'chocolate', label: 'Chocolate' },
+		{ value: 'strawberry', label: 'Strawberry' },
+		{ value: 'vanilla', label: 'Vanilla' },
+		{ value: 'chocolate', label: 'Chocolate' },
+		{ value: 'strawberry', label: 'Strawberry' },
+		{ value: 'vanilla', label: 'Vanilla' },
+		{ value: 'chocolate', label: 'Chocolate' },
+		{ value: 'strawberry', label: 'Strawberry' },
+		{ value: 'vanilla', label: 'Vanilla' },
+	];
 
 	Object.keys(contactDetails).map(function (key) {
 		States.push(contactDetails[key].states);
