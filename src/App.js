@@ -122,6 +122,7 @@ const App = () => {
 					render={() => (user ? <CheckoutPage /> : <Redirect to="/signin" />)}
 				/>
 				<Route exact path="/seller" render={() => (true ? <Seller /> : null)} />
+
 				<Route
 					exact
 					path="/orders"

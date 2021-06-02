@@ -14,7 +14,6 @@ const OrderPage = () => {
 				responseType: 'json',
 			});
 			console.log(response.data);
-			console.log(typeof response.data);
 			setOrderIds(response.data);
 		} catch (error) {
 			console.log('Order IDs Cannot Be Fetched');

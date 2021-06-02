@@ -17,7 +17,7 @@ export class Login extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		let name = this.state.itemName;
+
 		this.setState(
 			{
 				username: this.state.username,
@@ -41,7 +41,7 @@ export class Login extends React.Component {
 		return (
 			<LoginContainer className="base-container">
 				<div>
-					<div className="header">Login</div>
+					<div className="header">MERCHANT</div>
 					<div className="content">
 						<div className="image">
 							<img src={loginImg} alt="" />

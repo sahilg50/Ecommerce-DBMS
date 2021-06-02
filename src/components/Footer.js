@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Slide } from 'react-reveal';
 import styled from 'styled-components';
 import twitter from './twitter.png';
@@ -6,14 +6,53 @@ import facebook from './facebook.png';
 import instagram from './instagram.png';
 import youtube from './youtube.png';
 // import { ReactComponent as Logo } from './crown.svg';
-// import { DropdownButton, Dropdown } from 'react-bootstrap';
 
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import Select from 'react-select';
+
+import axios from 'axios';
 
 const Footer = () => {
-	const options = ['one', 'two', 'three'];
-	const defaultOption = options[0];
+	const [contactDetails, setContactDetails] = useState([]);
+	const [selectedOption, setSelectedOption] = useState([]);
+
+	const Fetch_Contact_DeTails = async () => {
+		try {
+			const response = await axios({
+				method: 'get',
+				url: 'http://localhost:4000/get_contactus',
+				responseType: 'json',
+			});
+			console.log(response.data);
+			setContactDetails(response.data);
+		} catch (error) {
+			alert('Contact Details Cannot be retrieved!');
+		}
+	};
+
+	useEffect(() => {
+		Fetch_Contact_DeTails();
+	}, []);
+
+	const States = [];
+	const Contacts = [];
+	const options = [];
+
+	Object.keys(contactDetails).map(function (key) {
+		States.push(contactDetails[key].states);
+		Contacts.push(contactDetails[key].TollFreeNumber);
+		options.push({
+			value: contactDetails[key].states,
+			label: contactDetails[key].states,
+		});
+		return null;
+	});
+
+	const handleChange = (selectedOption) => {
+		setSelectedOption(selectedOption);
+		navigator.clipboard.writeText(
+			Contacts[States.indexOf(selectedOption.value)]
+		);
+	};
 
 	return (
 		<FooterContainer>
@@ -32,10 +71,12 @@ const Footer = () => {
 
 						<Column>
 							<Heading>Contact Us</Heading>
-							<Dropdown
+
+							<Select
+								defaultValue={selectedOption}
+								value={selectedOption}
+								onChange={handleChange}
 								options={options}
-								value={defaultOption}
-								placeholder="Select an option"
 							/>
 							{/*onChange={this._onSelect}*/}
 							{/*<DropdownButton id="dropdown-basic-button" title="Dropdown button">;<Dropdown.Item href="#/action-1">Action</Dropdown.Item>

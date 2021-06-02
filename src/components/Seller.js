@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 //Product Id function to be made
 
-const SignUp = () => {
+const Seller = () => {
+	const options = ['one', 'two', 'three'];
+	const defaultOption = options[0];
+
 	const [name, setName] = useState('');
 	const [id, setId] = useState('');
 	const [price, setPrice] = useState('');
@@ -76,13 +81,10 @@ const SignUp = () => {
 					label="Product Image Url"
 					required
 				/>
-				<FormInput
-					type="text"
-					name="Ener CategoryId"
-					value={categoryId}
-					onChange={(e) => setCategoryId(e.target.value)}
-					label="Category Id"
-					required
+				<Dropdown
+					options={options}
+					value={defaultOption}
+					placeholder="Select an option"
 				/>
 				<CustomButton type="submit">ADD PRODUCT</CustomButton>
 			</form>
@@ -90,13 +92,14 @@ const SignUp = () => {
 	);
 };
 
-export default SignUp;
+export default Seller;
 
 const SellerContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 380px;
 	overflow-x: hidden;
+	margin-top: 50px;
 `;
 
 const Title = styled.h2`

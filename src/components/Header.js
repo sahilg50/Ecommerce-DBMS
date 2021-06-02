@@ -43,6 +43,7 @@ function Header() {
 						SIGN OUT
 					</OptionLink>
 				) : null}
+
 				{currentUser ? <CartIcon /> : null}
 
 				{currentUser ? null : (
@@ -50,7 +51,9 @@ function Header() {
 						SHOP
 					</OptionLink>
 				)}
-				{currentUser ? <OptionLink to="/merchant">MERCHANT</OptionLink> : null}
+				{currentUser ? null : (
+					<OptionLink to="/merchant">MERCHANT/ADMIN</OptionLink>
+				)}
 			</OptionsContainer>
 			{useSelector(selectHiddenState) ? <CartDropDown /> : null}
 		</HeaderContainer>
