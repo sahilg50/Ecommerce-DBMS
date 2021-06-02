@@ -99,13 +99,20 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<Header />
-
 			<Switch>
 				<Route
 					exact
 					path="/"
-					render={() => (user ? <HomePage /> : <Redirect to="/signin" />)}
+					render={() =>
+						user ? (
+							<>
+								<Header />
+								<HomePage />
+							</>
+						) : (
+							<Redirect to="/signin" />
+						)
+					}
 				/>
 				<Route
 					path="/shop"
@@ -122,19 +129,20 @@ const App = () => {
 					render={() => (user ? <CheckoutPage /> : <Redirect to="/signin" />)}
 				/>
 				<Route exact path="/seller" render={() => (true ? <Seller /> : null)} />
-
 				<Route
 					exact
 					path="/orders"
 					render={() => (user ? <OrderPage /> : <Redirect to="/signin" />)}
 				/>
-				{
-					<Route
-						exact
-						path="/merchant"
-						render={() => (true ? <Merchant /> : null)}
-					/>
-				}
+				<Route
+					exact
+					path="/merchant"
+					render={() => (true ? <Merchant /> : null)}
+				/>
+				<Route
+					path="/"
+					render={() => (true ? <h1>404 Page Not found! </h1> : null)}
+				/>
 			</Switch>
 		</div>
 	);
