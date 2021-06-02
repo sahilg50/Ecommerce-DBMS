@@ -71,10 +71,12 @@ const ContentContainer = styled.div`
 	background-color: white;
 	opacity: 0.7;
 	position: absolute;
+	&:hover {
+		color: #fdb302;
+	}
 `;
 
 const ContentTitle = styled.span`
-	font-weight: bold;
 	margin-bottom: 6px;
 	font-size: 22px;
 	color: #4a4a4a;

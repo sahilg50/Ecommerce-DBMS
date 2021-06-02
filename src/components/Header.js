@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from './crown.svg';
+import Logo from './shopping bag.png';
 import { auth } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetUser, selectCurrentUser } from '../redux/user/user';
@@ -28,12 +27,13 @@ function Header() {
 	return (
 		<HeaderContainer>
 			<LogoContainer to="/">
-				<Logo className="logo" />
+				<img src={Logo} alt="" />
 			</LogoContainer>
 			<OptionsContainer>
 				<OptionLink to="/">HOME</OptionLink>
 				<OptionLink to="/shop">SHOP</OptionLink>
 				<OptionLink to="/shop">CONTACT</OptionLink>
+				<OptionLink to="/orders">MY ORDERS</OptionLink>
 				{
 					currentUser ? (
 						<OptionLink as="div" onClick={handleSignOut}>
@@ -57,7 +57,8 @@ const HeaderContainer = styled.div`
 	left: 0;
 	right: 0;
 	height: 70px;
-	background-color: #121212;
+	/* background-color: #121212; */
+	background-color: #232425;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -69,6 +70,10 @@ const HeaderContainer = styled.div`
 const LogoContainer = styled(Link)`
 	width: 70px;
 	padding: 25px;
+	img {
+		height: 50px;
+		width: 50px;
+	}
 `;
 
 const OptionsContainer = styled.div`
@@ -88,7 +93,8 @@ const OptionLink = styled(Link)`
 
 	margin-right: 10px;
 	&:hover {
-		background-color: #dbd9d9;
-		color: black;
+		/* background-color: #dbd9d9;
+		color: black; */
+		color: #fdb302;
 	}
 `;

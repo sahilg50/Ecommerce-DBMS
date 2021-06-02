@@ -1,37 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { ClearCartItem } from '../redux/cart/cart';
-import { AddItem, RemoveItem } from '../redux/cart/cart';
 
-const CheckOutItem = ({ cartItem }) => {
+const OrderItem = ({ cartItem }) => {
 	//Add redux persist || Firebase || mysql to hold the checkout state
 	const { id, name, imageUrl, price, quantity } = cartItem;
+
 	const dispatch = useDispatch();
-
-	const handleClearItem = () => {
-		dispatch(
-			ClearCartItem({
-				ID: id,
-			})
-		);
-	};
-
-	const removeItem = () => {
-		dispatch(
-			RemoveItem({
-				Item: cartItem,
-			})
-		);
-	};
-
-	const addItem = () => {
-		dispatch(
-			AddItem({
-				Item: cartItem,
-			})
-		);
-	};
 
 	return (
 		<CheckoutItemContainer>
@@ -40,19 +15,15 @@ const CheckOutItem = ({ cartItem }) => {
 			</ImageContainer>
 			<TextContainer>{name}</TextContainer>
 			<QuantityContainer>
-				<div onClick={removeItem}>&#10094;</div>
 				<span>{quantity}</span>
-				<div onClick={addItem}>&#10095;</div>
 			</QuantityContainer>
-			<TextContainer>&#8377;{price}</TextContainer>
-			<RemoveButtonContainer onClick={handleClearItem}>
-				&#10005;
-			</RemoveButtonContainer>
+			<TextContainer>${price}</TextContainer>
+			<RemoveButtonContainer>Date</RemoveButtonContainer>
 		</CheckoutItemContainer>
 	);
 };
 
-export default CheckOutItem;
+export default OrderItem;
 
 export const CheckoutItemContainer = styled.div`
 	width: 100%;

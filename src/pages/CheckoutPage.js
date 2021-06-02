@@ -4,10 +4,28 @@ import { useSelector } from 'react-redux';
 import { TotalPrice, selectCartItems } from '../redux/cart/cart';
 import CheckOutItem from '../components/CheckOutItem';
 import StripCheckoutButton from '../components/Stripe';
+import axios from 'axios';
 
 const CheckoutPage = () => {
 	const totalPrice = useSelector(TotalPrice);
 	const cartItems = useSelector(selectCartItems);
+
+	const handlePayments = async () => {
+		try {
+			const response = await axios({
+				method: 'post',
+				// headers: { 'Content-Type': 'application/json' },
+				url: 'http://localhost:4000/place_order',
+				data: {
+					OrderId: Date.now(),
+				},
+				responseType: 'json',
+			});
+			console.log(response.data);
+		} catch (error) {
+			console.log('cart Items cannot be retrieved');
+		}
+	};
 
 	return (
 		<CheckoutPageContainer>
@@ -31,13 +49,15 @@ const CheckoutPage = () => {
 			{cartItems.map((cartItem) => (
 				<CheckOutItem cartItem={cartItem} key={cartItem.id} />
 			))}
-			<TotalContainer>TOTAL: ${totalPrice}</TotalContainer>
-			<WarningContainer>
+			<TotalContainer>TOTAL: &#8377;{totalPrice}</TotalContainer>
+			{/*<WarningContainer>
 				*Please use the following test credit card for payments*
 				<br />
 				4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
 			</WarningContainer>
-			<StripCheckoutButton price={totalPrice} />
+			<StripCheckoutButton price={totalPrice} />*/}
+
+			<button onClick={handlePayments}>Payment</button>
 		</CheckoutPageContainer>
 	);
 };
@@ -58,6 +78,7 @@ const CheckoutPageContainer = styled.div`
 `;
 
 const CheckoutHeaderContainer = styled.div`
+	margin-top: 72px;
 	width: 100%;
 	height: 40px;
 	display: flex;

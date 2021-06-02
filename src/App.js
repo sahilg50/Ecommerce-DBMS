@@ -14,6 +14,7 @@ import { setCurrentUser, resetUser } from './redux/user/user';
 import Seller from './components/Seller';
 import axios from 'axios';
 import { SetCartitems, ResetCart } from './redux/cart/cart';
+import OrderPage from './pages/OrderPage';
 
 const App = () => {
 	const [user, loading] = useAuthState(auth);
@@ -62,7 +63,9 @@ const App = () => {
 			Fetch_User(userDetails);
 
 			createUserProfileDocument(user);
+
 			dispatch(resetUser());
+
 			dispatch(
 				setCurrentUser({
 					currentUser: user,
@@ -118,6 +121,11 @@ const App = () => {
 					render={() => (user ? <CheckoutPage /> : <Redirect to="/signin" />)}
 				/>
 				<Route exact path="/seller" render={() => (true ? <Seller /> : null)} />
+				<Route
+					exact
+					path="/orders"
+					render={() => (true ? <OrderPage /> : null)}
+				/>
 			</Switch>
 		</div>
 	);
@@ -137,3 +145,11 @@ const Load = styled.h1`
 	letter-spacing: 30px;
 	margin-bottom: 50px;
 `;
+
+/* 
+Seller
+SearchBar
+DropDown
+Price Filtering
+SHOP Page
+*/
