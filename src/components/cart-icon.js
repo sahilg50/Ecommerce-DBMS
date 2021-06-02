@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { ReactComponent as ShoppingIconSVG } from './shopping-bag.svg';
 import { TotalCartItems, ToggleHiddenState } from '../redux/cart/cart';
 import { useDispatch, useSelector } from 'react-redux';
-// import axios from 'axios';
 
 const CartIcon = () => {
 	const TotalItems = useSelector(TotalCartItems);

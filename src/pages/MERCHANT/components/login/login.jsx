@@ -69,13 +69,9 @@ export class Login extends React.Component {
 									placeholder="password"
 								/>
 							</label>
-
 							<Footer className="footer">
 								<button type="submit" className="btn">
 									Login
-								</button>
-								<button type="button" className="btn">
-									Google
 								</button>
 							</Footer>
 						</form>

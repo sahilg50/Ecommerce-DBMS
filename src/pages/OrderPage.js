@@ -1,28 +1,62 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Orders from '../components/Orders';
 
 const OrderPage = () => {
+	const [orderIds, setOrderIds] = useState(null);
+
+	const Fetch_OrderIds = async () => {
+		try {
+			const response = await axios({
+				method: 'get',
+				url: 'http://localhost:4000/get_distinct_orders',
+				responseType: 'json',
+			});
+			console.log(response.data);
+			console.log(typeof response.data);
+			setOrderIds(response.data);
+		} catch (error) {
+			console.log('Order IDs Cannot Be Fetched');
+		}
+	};
+
+	useEffect(() => {
+		Fetch_OrderIds();
+	}, []);
+
 	return (
 		<CheckoutPageContainer>
-			<CheckoutHeaderContainer>
-				<HeaderBlockContainer>
-					<span>Product</span>
-				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Description</span>
-				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Total Quantity</span>
-				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Total Price</span>
-				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Date Ordered</span>
-				</HeaderBlockContainer>
-			</CheckoutHeaderContainer>
-			<Orders />
+			{orderIds ? (
+				<Main>
+					<CheckoutHeaderContainer>
+						<HeaderBlockContainer>
+							<span>Product</span>
+						</HeaderBlockContainer>
+						<HeaderBlockContainer>
+							<span>Description</span>
+						</HeaderBlockContainer>
+						<HeaderBlockContainer>
+							<span>Total Quantity</span>
+						</HeaderBlockContainer>
+						<HeaderBlockContainer>
+							<span>Total Price</span>
+						</HeaderBlockContainer>
+						<HeaderBlockContainer>
+							<span>Date Ordered</span>
+						</HeaderBlockContainer>
+					</CheckoutHeaderContainer>
+
+					{Object.keys(orderIds).map(function (key) {
+						// console.log(orderIds[key]);
+						return (
+							<Orders key={orderIds[key].orderId} OrderId={orderIds[key]} />
+						);
+					})}
+				</Main>
+			) : (
+				<h1>NO ORDERS</h1>
+			)}
 		</CheckoutPageContainer>
 	);
 };
@@ -41,6 +75,9 @@ const CheckoutPageContainer = styled.div`
 		margin-top: 50px;
 	}
 	overflow-x: hidden;
+`;
+const Main = styled.div`
+	width: 100%;
 `;
 
 const CheckoutHeaderContainer = styled.div`
