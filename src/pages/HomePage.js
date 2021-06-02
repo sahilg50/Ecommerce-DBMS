@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Brands from '../components/Brands';
 import Footer from '../components/Footer';
 import Directory from '../components/Directory';
-import POPUP from '../components/popUp';
+// import POPUP from '../components/popUp';
 
 const HomePage = () => {
-	const details = true;
+	// const details = true;
 	//Details
 
 	return (

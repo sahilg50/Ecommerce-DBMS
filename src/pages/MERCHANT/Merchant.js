@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './App';
+import App from './MerchantApp';
 import './index.css';
 
 const Merchant = () => {
