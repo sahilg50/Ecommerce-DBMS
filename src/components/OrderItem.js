@@ -6,8 +6,6 @@ const OrderItem = ({ cartItem }) => {
 	//Add redux persist || Firebase || mysql to hold the checkout state
 	const { id, name, imageUrl, price, quantity } = cartItem;
 
-	const dispatch = useDispatch();
-
 	return (
 		<CheckoutItemContainer>
 			<ImageContainer>

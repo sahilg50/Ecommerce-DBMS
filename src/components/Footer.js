@@ -47,16 +47,16 @@ const Footer = () => {
 				</Container>
 
 				<Bottom>
-					<BottomLink href="#">
+					<BottomLink href="https://www.facebook.com/">
 						<img src={facebook} alt="" />
 					</BottomLink>
-					<BottomLink href="#">
+					<BottomLink href="https://www.instagram.com/">
 						<img src={instagram} alt="" />
 					</BottomLink>
-					<BottomLink href="#">
+					<BottomLink href="https://twitter.com/home?lang=en">
 						<img src={twitter} alt="" />
 					</BottomLink>
-					<BottomLink href="#">
+					<BottomLink href="https://www.youtube.com/">
 						<img src={youtube} alt="" />
 					</BottomLink>
 				</Bottom>
@@ -136,7 +136,7 @@ const Bottom = styled.div`
 	justify-content: center;
 `;
 
-const BottomLink = styled.div`
+const BottomLink = styled.a`
 	display: flex;
 	flex: row;
 	align-items: center;

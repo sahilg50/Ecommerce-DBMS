@@ -25,6 +25,17 @@ const CheckoutPage = () => {
 		} catch (error) {
 			console.log('cart Items cannot be retrieved');
 		}
+
+		try {
+			const response = await axios({
+				method: 'get',
+				url: 'http://localhost:4000/empty_the_cart',
+				responseType: 'json',
+			});
+			console.log(response.data);
+		} catch (error) {
+			console.log('cart cannot be emptied');
+		}
 	};
 
 	return (

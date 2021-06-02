@@ -11,7 +11,7 @@ const HomePage = () => {
 
 	return (
 		<HomePageContainer>
-			{details ? (
+			{/*details ? (
 				<div>
 					<Directory />
 					<Brands />
@@ -19,7 +19,10 @@ const HomePage = () => {
 				</div>
 			) : (
 				<POPUP />
-			)}
+			)*/}
+			<Directory />
+			<Brands />
+			<Footer />
 		</HomePageContainer>
 	);
 };
