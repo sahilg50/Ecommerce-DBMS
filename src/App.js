@@ -15,6 +15,7 @@ import Seller from './components/Seller';
 import axios from 'axios';
 import { SetCartitems, ResetCart } from './redux/cart/cart';
 import OrderPage from './pages/OrderPage';
+import Merchant from './pages/MERCHANT/Merchant';
 
 const App = () => {
 	const [user, loading] = useAuthState(auth);
@@ -126,6 +127,13 @@ const App = () => {
 					path="/orders"
 					render={() => (true ? <OrderPage /> : null)}
 				/>
+				{
+					<Route
+						exact
+						path="/merchant"
+						render={() => (true ? <Merchant /> : null)}
+					/>
+				}
 			</Switch>
 		</div>
 	);

@@ -1,117 +1,94 @@
 import React from 'react';
-import mobiscroll from '@mobiscroll/react';
-import '@mobiscroll/react/dist/css/mobiscroll.min.css';
+import ReactDOM from 'react-dom';
 
-mobiscroll.settings = {
-	theme: 'ios',
-	themeVariant: 'light',
+const appStyle = {
+	height: '250px',
+	display: 'flex',
 };
 
-const signUpBtn = [
-	{
-		text: 'Sign Up',
-		handler: 'set',
-	},
-];
+const formStyle = {
+	margin: 'auto',
+	padding: '10px',
+	border: '1px solid #c9c9c9',
+	borderRadius: '5px',
+	background: '#f5f5f5',
+	width: '220px',
+	display: 'block',
+};
 
-const logInBtn = [
-	{
-		text: 'Log In',
-		handler: 'set',
-	},
-];
+const labelStyle = {
+	margin: '10px 0 5px 0',
+	fontFamily: 'Arial, Helvetica, sans-serif',
+	fontSize: '15px',
+};
 
-class PopContainer extends React.Component {
-	showRegister = () => {
-		this.refs.register.instance.show();
+const inputStyle = {
+	margin: '5px 0 10px 0',
+	padding: '5px',
+	border: '1px solid #bfbfbf',
+	borderRadius: '3px',
+	boxSizing: 'border-box',
+	width: '100%',
+};
+
+const submitStyle = {
+	margin: '10px 0 0 0',
+	padding: '7px 10px',
+	border: '1px solid #efffff',
+	borderRadius: '3px',
+	background: '#3085d6',
+	width: '100%',
+	fontSize: '15px',
+	color: 'white',
+	display: 'block',
+};
+
+const Field = React.forwardRef(({ label, type }, ref) => {
+	return (
+		<div>
+			<label style={labelStyle}>{label}</label>
+			<input ref={ref} type={type} style={inputStyle} />
+		</div>
+	);
+});
+
+const Form = ({ onSubmit }) => {
+	const usernameRef = React.useRef();
+	const passwordRef = React.useRef();
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const data = {
+			username: usernameRef.current.value,
+			password: passwordRef.current.value,
+		};
+		onSubmit(data);
 	};
-
-	showLogin = () => {
-		this.refs.login.instance.show();
-	};
-
-	hideLogin = () => {
-		this.refs.login.instance.hide();
-	};
-
-	render() {
-		return (
+	return (
+		<form style={formStyle} onSubmit={handleSubmit}>
+			<Field ref={usernameRef} label="Username:" type="text" />
+			<Field ref={passwordRef} label="Password:" type="password" />
 			<div>
-				<mobiscroll.Form>
-					<mobiscroll.FormGroup>
-						<div className="mbsc-btn-group-block">
-							<mobiscroll.Button onClick={this.showRegister}>
-								Show register form
-							</mobiscroll.Button>
-							<mobiscroll.Button onClick={this.showLogin}>
-								Show login form
-							</mobiscroll.Button>
-						</div>
-					</mobiscroll.FormGroup>
-				</mobiscroll.Form>
-				<mobiscroll.Popup ref="register" display="center" buttons={signUpBtn}>
-					<mobiscroll.Form>
-						<mobiscroll.FormGroup inset>
-							<mobiscroll.Input type="text" name="name" placeholder="Name" />
-							<mobiscroll.Input type="text" name="email" placeholder="Email" />
-							<mobiscroll.Input
-								name="password"
-								type="text"
-								placeholder="Password"
-								passwordToggle="true"
-								iconShow="eye"
-								iconHide="eye-blocked"
-							/>
-						</mobiscroll.FormGroup>
-					</mobiscroll.Form>
-				</mobiscroll.Popup>
-				<mobiscroll.Popup ref="login" display="center" buttons={logInBtn}>
-					<mobiscroll.Form>
-						<mobiscroll.FormGroup inset>
-							<mobiscroll.Input type="text" name="email" placeholder="Email" />
-							<mobiscroll.Input
-								name="password"
-								type="text"
-								placeholder="Password"
-								passwordToggle="true"
-								iconShow="eye"
-								iconHide="eye-blocked"
-							/>
-						</mobiscroll.FormGroup>
-						<div className="mbsc-align-center">
-							or log in with one of your existing accounts
-						</div>
-						<mobiscroll.FormGroup inset>
-							<mobiscroll.Button
-								onClick={this.hideLogin}
-								className="md-social-btn mbsc-btn-block"
-								style={{ background: '#3c5c9a', color: '#fff' }}
-							>
-								<span className="mbsc-ic mbsc-ic-ion-social-facebook mbsc-pull-left"></span>
-								Log in with Facebook
-							</mobiscroll.Button>
-							<mobiscroll.Button
-								onClick={this.hideLogin}
-								className="md-social-btn mbsc-btn-block"
-								style={{ background: '#28aae1', color: '#fff' }}
-							>
-								<span className="mbsc-ic mbsc-ic-fa-twitter mbsc-pull-left"></span>
-								Log in with Twitter
-							</mobiscroll.Button>
-							<mobiscroll.Button
-								onClick={this.hideLogin}
-								className="md-social-btn mbsc-btn-block"
-								style={{ background: '#d34230', color: '#fff' }}
-							>
-								<span className="mbsc-ic mbsc-ic-fa-google mbsc-pull-left"></span>
-								Log in with Google
-							</mobiscroll.Button>
-						</mobiscroll.FormGroup>
-					</mobiscroll.Form>
-				</mobiscroll.Popup>
+				<button style={submitStyle} type="submit">
+					Submit
+				</button>
 			</div>
-		);
-	}
-}
+		</form>
+	);
+};
 
-export default PopContainer;
+// Usage example:
+
+const POPUP = () => {
+	const handleSubmit = (data) => {
+		const json = JSON.stringify(data, null, 4);
+		console.clear();
+		console.log(json);
+	};
+	return (
+		<div style={appStyle}>
+			<Form onSubmit={handleSubmit} />
+		</div>
+	);
+};
+
+export default POPUP;

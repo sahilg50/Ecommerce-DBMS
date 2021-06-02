@@ -3,13 +3,23 @@ import styled from 'styled-components';
 import Brands from '../components/Brands';
 import Footer from '../components/Footer';
 import Directory from '../components/Directory';
+import POPUP from '../components/popUp';
 
 const HomePage = () => {
+	const details = true;
+	//Details
+
 	return (
 		<HomePageContainer>
-			<Directory />
-			<Brands />
-			<Footer />
+			{details ? (
+				<div>
+					<Directory />
+					<Brands />
+					<Footer />
+				</div>
+			) : (
+				<POPUP />
+			)}
 		</HomePageContainer>
 	);
 };

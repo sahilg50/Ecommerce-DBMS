@@ -24,25 +24,33 @@ function Header() {
 			.catch((error) => alert(error.message));
 	};
 
+	const handleAlert = () => {
+		alert('Please SIGN IN FIRST!');
+	};
+
 	return (
 		<HeaderContainer>
 			<LogoContainer to="/">
 				<img src={Logo} alt="" />
 			</LogoContainer>
 			<OptionsContainer>
-				<OptionLink to="/">HOME</OptionLink>
-				<OptionLink to="/shop">SHOP</OptionLink>
-				<OptionLink to="/shop">CONTACT</OptionLink>
-				<OptionLink to="/orders">MY ORDERS</OptionLink>
-				{
-					currentUser ? (
-						<OptionLink as="div" onClick={handleSignOut}>
-							SIGN OUT
-						</OptionLink>
-					) : null
-					// <OptionLink to="/signin">SIGN IN</OptionLink>
-				}
+				{currentUser ? <OptionLink to="/">HOME</OptionLink> : null}
+				{currentUser ? <OptionLink to="/shop">SHOP</OptionLink> : null}
+				{currentUser ? <OptionLink to="/shop">CONTACT</OptionLink> : null}
+				{currentUser ? <OptionLink to="/orders">MY ORDERS</OptionLink> : null}
+				{currentUser ? (
+					<OptionLink as="div" onClick={handleSignOut}>
+						SIGN OUT
+					</OptionLink>
+				) : null}
 				{currentUser ? <CartIcon /> : null}
+
+				{currentUser ? null : (
+					<OptionLink as="div" onClick={handleAlert}>
+						SHOP
+					</OptionLink>
+				)}
+				{currentUser ? <OptionLink to="/merchant">MERCHANT</OptionLink> : null}
 			</OptionsContainer>
 			{useSelector(selectHiddenState) ? <CartDropDown /> : null}
 		</HeaderContainer>
