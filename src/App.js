@@ -105,10 +105,10 @@ const App = () => {
 					path="/"
 					render={() =>
 						user ? (
-							<>
+							<div>
 								<Header />
 								<HomePage />
-							</>
+							</div>
 						) : (
 							<Redirect to="/signin" />
 						)
