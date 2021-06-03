@@ -19,6 +19,6 @@ const merchantSlice = createSlice({
 
 export const { setCurrentMerchant, resetMerchant } = merchantSlice.actions;
 
-export const selectCurrentMerchant = (state) => state.merchant.currentUser;
+export const selectCurrentMerchant = (state) => state.merchant.currentMerchant;
 
 export default merchantSlice.reducer;

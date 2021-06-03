@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import MerchantImg from './merchant.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentMerchant } from '../../../../redux/merchant/merchant.reducer';
+import {
+	selectCurrentMerchant,
+	setCurrentMerchant,
+} from '../../../../redux/merchant/merchant.reducer';
 
 export const Login = () => {
 	const [username, setUsername] = useState('');
@@ -32,6 +35,8 @@ export const Login = () => {
 						},
 					})
 				);
+			} else {
+				alert('Enter Valid username and password!');
 			}
 		} catch (error) {
 			console.log('Seller Login in Error');
@@ -43,6 +48,7 @@ export const Login = () => {
 		Merchant_login();
 		setUsername('');
 		setPassword('');
+		// window.location.href = 'http://localhost:3000/seller';
 	};
 
 	return (

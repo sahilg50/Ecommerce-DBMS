@@ -56,6 +56,8 @@ const Header = () => {
 
 				{url === 'http://localhost:3000/merchant' ? (
 					<OptionLink to="/signin">USER</OptionLink>
+				) : url === 'http://localhost:3000/seller' ? (
+					<OptionLink to="/signin">I'M USER</OptionLink>
 				) : currentUser ? null : (
 					<OptionLink to="/merchant">MERCHANT/ADMIN</OptionLink>
 				)}

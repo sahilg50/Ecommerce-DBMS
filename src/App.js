@@ -90,7 +90,8 @@ const App = () => {
 	);
 	dispatch(SetCartitems({ CartItems: tempCart }));
 
-	const merchant = useSelector(selectCurrentMerchant);
+	var merchant = useSelector(selectCurrentMerchant);
+	// var merchant = true;
 
 	if (loading) {
 		return (
@@ -158,6 +159,22 @@ const App = () => {
 						)
 					}
 				/>
+
+				<Route
+					exact
+					path="/orders"
+					render={() =>
+						user ? (
+							<>
+								<Header />
+								<OrderPage />
+							</>
+						) : (
+							<Redirect to="/signin" />
+						)
+					}
+				/>
+
 				<Route
 					exact
 					path="/seller"
@@ -172,26 +189,15 @@ const App = () => {
 						)
 					}
 				/>
-				<Route
-					exact
-					path="/orders"
-					render={() =>
-						user ? (
-							<>
-								<Header />
-								<OrderPage />{' '}
-							</>
-						) : (
-							<Redirect to="/signin" />
-						)
-					}
-				/>
+
 				<Route
 					exact
 					path="/merchant"
 					render={() =>
 						user ? (
 							<Redirect to="/" />
+						) : merchant ? (
+							<Redirect to="/seller" />
 						) : (
 							<>
 								<Header />
