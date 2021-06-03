@@ -87,57 +87,67 @@ const Seller = () => {
 
 	return (
 		<div>
-			<SellerContainer>
-				<Title>SELLER INFO</Title>
-				<span>Add a new product</span>
-				<form onSubmit={handleSubmit}>
-					<FormInput
-						type="text"
-						name="Enter Name"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						label="Product Name"
-						required
-					/>
-					<FormInput
-						type="text"
-						name="Enter Id"
-						value={id}
-						onChange={(e) => setId(e.target.value)}
-						label="Product Id"
-						required
-					/>
-					<FormInput
-						type="text"
-						name="Enter Price"
-						value={price}
-						onChange={(e) => setPrice(e.target.value)}
-						label="Price"
-						required
-					/>
-					<FormInput
-						type="url"
-						name="ImgURL"
-						value={imageUrl}
-						onChange={(e) => setImageUrl(e.target.value)}
-						label="Product Image Url"
-						required
-					/>
+			<SellerContainerOuter>
+				<SellerContainer>
+					<Title>SELLER INFO</Title>
+					<span>Add a new product</span>
+					<form onSubmit={handleSubmit}>
+						<Select
+							defaultValue={selectedOption}
+							value={selectedOption}
+							onChange={handleChange}
+							options={options}
+						/>
 
-					<CustomButton type="submit">ADD PRODUCT</CustomButton>
-				</form>
-				<Select
-					defaultValue={selectedOption}
-					value={selectedOption}
-					onChange={handleChange}
-					options={options}
-				/>
-			</SellerContainer>
+						<FormInput
+							type="text"
+							name="Enter Name"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							label="Product Name"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="Enter Id"
+							value={id}
+							onChange={(e) => setId(e.target.value)}
+							label="Product Id"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="Enter Price"
+							value={price}
+							onChange={(e) => setPrice(e.target.value)}
+							label="Price"
+							required
+						/>
+						<FormInput
+							type="url"
+							name="ImgURL"
+							value={imageUrl}
+							onChange={(e) => setImageUrl(e.target.value)}
+							label="Product Image Url"
+							required
+						/>
+
+						<ButtonContainer>
+							<CustomButton type="submit">ADD PRODUCT</CustomButton>
+						</ButtonContainer>
+					</form>
+				</SellerContainer>
+			</SellerContainerOuter>
 		</div>
 	);
 };
 
 export default Seller;
+
+const SellerContainerOuter = styled.div`
+	border: 4px solid rgba(253, 179, 20, 0.5);
+	margin-top: 60px;
+`;
 
 const SellerContainer = styled.div`
 	display: flex;
@@ -145,8 +155,17 @@ const SellerContainer = styled.div`
 	width: 380px;
 	overflow-x: hidden;
 	margin-top: 50px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 15px;
 `;
 
 const Title = styled.h2`
 	margin: 10px 0;
+`;
+
+const ButtonContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	margin-top: -10px;
 `;

@@ -5,51 +5,69 @@ import OrderItem from '../components/OrderItem';
 // import Orders from '../components/Orders';
 
 const OrderPage = () => {
-	const [orderIds, setOrderIds] = useState(null);
+	// const [orderIds, setOrderIds] = useState(null);
+	const [orderItems, setOrderItems] = useState([]);
 
-	const Fetch_OrderIds = async () => {
+	// const Fetch_OrderIds = async () => {
+	// 	try {
+	// 		const response = await axios({
+	// 			method: 'get',
+	// 			url: 'http://localhost:4000/get_distinct_orders',
+	// 			responseType: 'json',
+	// 		});
+	// 		console.log(response.data);
+	// 		setOrderIds(response.data);
+	// 	} catch (error) {
+	// 		console.log('Order IDs Cannot Be Fetched');
+	// 	}
+	// };
+
+	const Fetch_OrderItems = async () => {
 		try {
 			const response = await axios({
 				method: 'get',
-				url: 'http://localhost:4000/get_distinct_orders',
+				url: 'http://localhost:4000/get_all_orderItems',
 				responseType: 'json',
 			});
 			console.log(response.data);
-			setOrderIds(response.data);
+			setOrderItems(response.data);
 		} catch (error) {
-			console.log('Order IDs Cannot Be Fetched');
+			console.log('Order Items cannot be fetched');
 		}
 	};
 
 	useEffect(() => {
-		Fetch_OrderIds();
+		Fetch_OrderItems();
 	}, []);
 
 	return (
 		<CheckoutPageContainer>
-			{false ? (
-				<Main>
-					<CheckoutHeaderContainer>
-						<HeaderBlockContainer>
-							<span>Product</span>
-						</HeaderBlockContainer>
-						<HeaderBlockContainer>
-							<span>Description</span>
-						</HeaderBlockContainer>
-						<HeaderBlockContainer>
-							<span>Total Quantity</span>
-						</HeaderBlockContainer>
-						<HeaderBlockContainer>
-							<span>Total Price</span>
-						</HeaderBlockContainer>
-						<HeaderBlockContainer>
-							<span>Date Ordered</span>
-						</HeaderBlockContainer>
-					</CheckoutHeaderContainer>
-				</Main>
-			) : (
-				<h1>NO ORDERS</h1>
-			)}
+			<Main>
+				<CheckoutHeaderContainer>
+					<HeaderBlockContainer>
+						<span>Product</span>
+					</HeaderBlockContainer>
+					<HeaderBlockContainer>
+						<span>Description</span>
+					</HeaderBlockContainer>
+					<HeaderBlockContainer>
+						<span>Total Quantity</span>
+					</HeaderBlockContainer>
+					<HeaderBlockContainer>
+						<span>Total Price</span>
+					</HeaderBlockContainer>
+					<HeaderBlockContainer>
+						<span>Date Ordered</span>
+					</HeaderBlockContainer>
+				</CheckoutHeaderContainer>
+
+				{Object.keys(orderItems).map(function (key) {
+					console.log(orderItems[key]);
+					return (
+						<OrderItem key={orderItems[key].id} cartItem={orderItems[key]} />
+					);
+				})}
+			</Main>
 		</CheckoutPageContainer>
 	);
 };

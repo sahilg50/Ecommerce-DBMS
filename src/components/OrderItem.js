@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const OrderItem = ({ cartItem }) => {
 	//Add redux persist || Firebase || mysql to hold the checkout state
-	const { id, name, imageUrl, price, quantity } = cartItem;
-
+	const { name, imageUrl, price, quantity, date } = cartItem;
+	var newDate = date.slice(0, 10);
 	return (
 		<CheckoutItemContainer>
 			<ImageContainer>
@@ -15,7 +15,7 @@ const OrderItem = ({ cartItem }) => {
 				<span>{quantity}</span>
 			</QuantityContainer>
 			<TextContainer>${price}</TextContainer>
-			<RemoveButtonContainer>Date</RemoveButtonContainer>
+			<RemoveButtonContainer>{newDate}</RemoveButtonContainer>
 		</CheckoutItemContainer>
 	);
 };

@@ -18,9 +18,9 @@ const LandingImageContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	min-height: 90%;
-	width: 90%;
-	margin-bottom: 35px;
-	margin-top: 35px;
+	width: 93%;
+	margin-bottom: 34px;
+	margin-top: 30px;
 	align-items: center;
 	justify-content: center;
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from './zany.png';
 import { auth } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';

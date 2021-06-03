@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { TotalPrice, selectCartItems } from '../redux/cart/cart';
 import CheckOutItem from '../components/CheckOutItem';
-import StripCheckoutButton from '../components/Stripe';
+// import StripCheckoutButton from '../components/Stripe';
 import axios from 'axios';
 
 const CheckoutPage = () => {
