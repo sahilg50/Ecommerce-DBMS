@@ -10,6 +10,7 @@ const CollectionPage = ({ match }) => {
 	// console.log(collectionUrlParams);
 
 	const [fetched_Collection, setFetched_Collection] = useState([]);
+	const [brandNames, setBrandNames] = useState([]);
 
 	const Fetch_Collections = async (collectionUrlParams) => {
 		try {
@@ -26,9 +27,76 @@ const CollectionPage = ({ match }) => {
 		}
 	};
 
+	const Fetch_Men_Women = async (collectionUrlParams) => {
+		try {
+			const response = await axios({
+				method: 'post',
+				url: 'http://localhost:4000/collections_men_women',
+				data: {
+					collection: collectionUrlParams,
+				},
+			});
+			setFetched_Collection(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const Fetch_Brands = async (collectionUrlParams) => {
+		try {
+			const response = await axios({
+				method: 'post',
+				url: 'http://localhost:4000/collections_brands',
+				data: {
+					collection: collectionUrlParams,
+				},
+			});
+			setFetched_Collection(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const Fetch_BrandNames = async (collectionUrlParams) => {
+		try {
+			const response = await axios({
+				method: 'get',
+				url: 'http://localhost:4000/collections_brandnames',
+				data: {
+					collection: collectionUrlParams,
+				},
+			});
+			console.log(response.data);
+			setBrandNames(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
-		Fetch_Collections(collectionUrlParams);
+		Fetch_BrandNames();
+		if (collectionUrlParams === 'Men' || collectionUrlParams === 'Women') {
+			Fetch_Men_Women(collectionUrlParams);
+		} else if (
+			[
+				'Adidas',
+				'accessorize',
+				'Zara',
+				'H&M',
+				"Levi's",
+				'Aldo',
+				'Forever New',
+				'Hermès',
+				'Nike',
+				'The Body Shop',
+			].includes(collectionUrlParams)
+		) {
+			Fetch_Brands(collectionUrlParams);
+		} else {
+			Fetch_Collections(collectionUrlParams);
+		}
 	}, [collectionUrlParams]);
+
 	// console.log(fetched_Collection);
 
 	// const collections = useSelector(selectCollectionData);

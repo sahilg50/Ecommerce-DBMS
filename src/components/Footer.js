@@ -34,20 +34,7 @@ const Footer = () => {
 
 	const States = [];
 	const Contacts = [];
-	const options = [
-		{ value: 'chocolate', label: 'Chocolate' },
-		{ value: 'strawberry', label: 'Strawberry' },
-		{ value: 'vanilla', label: 'Vanilla' },
-		{ value: 'chocolate', label: 'Chocolate' },
-		{ value: 'strawberry', label: 'Strawberry' },
-		{ value: 'vanilla', label: 'Vanilla' },
-		{ value: 'chocolate', label: 'Chocolate' },
-		{ value: 'strawberry', label: 'Strawberry' },
-		{ value: 'vanilla', label: 'Vanilla' },
-		{ value: 'chocolate', label: 'Chocolate' },
-		{ value: 'strawberry', label: 'Strawberry' },
-		{ value: 'vanilla', label: 'Vanilla' },
-	];
+	const options = [];
 
 	Object.keys(contactDetails).map(function (key) {
 		States.push(contactDetails[key].states);
@@ -120,7 +107,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.div`
-	background: #232425;
+	background: #bfbebc;
 
 	bottom: 0;
 	width: 100%;

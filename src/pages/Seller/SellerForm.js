@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import './seller.styles.css';
+import './sellerform.styles.css';
 import styled from 'styled-components';
-import FormInput from './FormInput';
-import CustomButton from './CustomButton';
-import Dropdown from 'react-dropdown';
+import FormInput from '../../components/FormInput';
+import CustomButton from '../../components/CustomButton';
 import 'react-dropdown/style.css';
 import Select from 'react-select';
 import axios from 'axios';
 
 //Product Id function to be made
 
-const Seller = () => {
+const SellerForm = () => {
 	const [name, setName] = useState('');
 	const [id, setId] = useState('');
 	const [price, setPrice] = useState('');
@@ -142,7 +141,7 @@ const Seller = () => {
 	);
 };
 
-export default Seller;
+export default SellerForm;
 
 const SellerContainerOuter = styled.div`
 	border: 4px solid rgba(253, 179, 20, 0.5);

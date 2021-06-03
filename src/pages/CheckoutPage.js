@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { TotalPrice, selectCartItems } from '../redux/cart/cart';
@@ -7,7 +7,7 @@ import CheckOutItem from '../components/CheckOutItem';
 import axios from 'axios';
 
 const CheckoutPage = () => {
-	const totalPrice = useSelector(TotalPrice);
+	var totalPrice = useSelector(TotalPrice);
 	const cartItems = useSelector(selectCartItems);
 
 	const handlePayments = async () => {
@@ -40,35 +40,41 @@ const CheckoutPage = () => {
 
 	return (
 		<CheckoutPageContainer>
-			<CheckoutHeaderContainer>
-				<HeaderBlockContainer>
-					<span>Product</span>
-				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Description</span>
-				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Quantity</span>
-				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Price</span>
-				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Remove</span>
-				</HeaderBlockContainer>
-			</CheckoutHeaderContainer>
-			{cartItems.map((cartItem) => (
-				<CheckOutItem cartItem={cartItem} key={cartItem.id} />
-			))}
-			<TotalContainer>TOTAL: &#8377;{totalPrice}</TotalContainer>
-			{/*<WarningContainer>
+			{totalPrice ? (
+				<>
+					<CheckoutHeaderContainer>
+						<HeaderBlockContainer>
+							<span>Product</span>
+						</HeaderBlockContainer>
+						<HeaderBlockContainer>
+							<span>Description</span>
+						</HeaderBlockContainer>
+						<HeaderBlockContainer>
+							<span>Quantity</span>
+						</HeaderBlockContainer>
+						<HeaderBlockContainer>
+							<span>Price</span>
+						</HeaderBlockContainer>
+						<HeaderBlockContainer>
+							<span>Remove</span>
+						</HeaderBlockContainer>
+					</CheckoutHeaderContainer>
+					{cartItems.map((cartItem) => (
+						<CheckOutItem cartItem={cartItem} key={cartItem.id} />
+					))}
+					<TotalContainer>TOTAL: &#8377;{totalPrice}</TotalContainer>
+					{/*<WarningContainer>
 				*Please use the following test credit card for payments*
 				<br />
 				4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
 			</WarningContainer>
 			<StripCheckoutButton price={totalPrice} />*/}
 
-			<button onClick={handlePayments}>Payment</button>
+					<button onClick={handlePayments}>Payment</button>
+				</>
+			) : (
+				<h1>Your cart is empty :( </h1>
+			)}
 		</CheckoutPageContainer>
 	);
 };

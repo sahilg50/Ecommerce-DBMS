@@ -39,7 +39,7 @@ const Header = () => {
 			<OptionsContainer>
 				{currentUser ? <OptionLink to="/">HOME</OptionLink> : null}
 				{currentUser ? <OptionLink to="/shop">SHOP</OptionLink> : null}
-				{currentUser ? <OptionLink to="/shop">CONTACT</OptionLink> : null}
+				{currentUser ? <OptionLink to="/ ">CONTACT</OptionLink> : null}
 				{currentUser ? <OptionLink to="/orders">MY ORDERS</OptionLink> : null}
 				{currentUser ? (
 					<OptionLink as="div" onClick={handleSignOut}>
@@ -77,7 +77,7 @@ const HeaderContainer = styled.div`
 	right: 0;
 	height: 70px;
 	/* background-color: #121212; */
-	background-color: #232425;
+	background-color: #bfbebc;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -103,6 +103,8 @@ const OptionsContainer = styled.div`
 	align-items: center;
 	justify-content: flex-end;
 	color: white;
+	font-size: larger;
+	font-weight: 600;
 `;
 
 const OptionLink = styled(Link)`
@@ -113,8 +115,8 @@ const OptionLink = styled(Link)`
 
 	margin-right: 10px;
 	&:hover {
-		/* background-color: #dbd9d9;
-		color: black; */
-		color: #fdb302;
+		background-color: rgba(253, 179, 2, 0.6);
+
+		color: black;
 	}
 `;

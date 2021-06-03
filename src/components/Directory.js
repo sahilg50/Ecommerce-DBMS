@@ -8,23 +8,36 @@ import axios from 'axios';
 const Directory = () => {
 	// const sections = useSelector(selectSections);
 	const [categories, setCategories] = useState([]);
+	const [men_women, setMen_women] = useState([]);
 
-	const Fectch_Categories = async () => {
+	const Fetch_Categories = async () => {
 		try {
 			const response = await axios.get(`http://localhost:4000/category`);
+			console.log(response.data);
 			setCategories(response.data);
 		} catch (error) {
 			console.log('Directory request error');
 		}
 	};
 
+	const Fetch_Men_Women = async () => {
+		try {
+			const response = await axios.get(`http://localhost:4000/men_women`);
+			console.log(response.data);
+			setMen_women(response.data);
+		} catch (error) {
+			console.log('Directory request error');
+		}
+	};
+
 	useEffect(() => {
-		Fectch_Categories();
+		Fetch_Categories();
+		Fetch_Men_Women();
 	}, []);
 
 	return (
 		<DirectoryMenuContainer>
-			{categories.slice(0, 3).map(({ category_id, imageUrl, categoryName }) => (
+			{categories.map(({ category_id, imageUrl, categoryName }) => (
 				<MenuItem
 					key={category_id}
 					title={categoryName}
@@ -33,13 +46,13 @@ const Directory = () => {
 					linkUrl={`shop/${categoryName}`}
 				/>
 			))}
-			{categories.slice(3, 5).map(({ category_id, imageUrl, categoryName }) => (
+			{men_women.map(({ genderId, genderUrl, gender }) => (
 				<MenuItem
-					key={category_id}
-					title={categoryName}
-					imageUrl={imageUrl}
+					key={genderId}
+					title={gender}
+					imageUrl={genderUrl}
 					size={'true'}
-					linkUrl={`shop/${categoryName}`}
+					linkUrl={`shop/${gender}`}
 				/>
 			))}
 		</DirectoryMenuContainer>

@@ -27,28 +27,34 @@ const CollectionPreview = ({ categoryName, history, match }) => {
 		Fetch_Collections(categoryName);
 	}, [categoryName]);
 
-	return (
-		<CollectionPreviewContainer>
-			<TitleContainer
-				onClick={() => history.push(`${match.url}/${categoryName}`)}
-			>
-				{categoryName.toUpperCase()}
-			</TitleContainer>
-			<PreviewContainer>
-				{fetched_Collection
-					.filter((fetched_item, idx) => idx < 5)
-					.map((fetched_item) => {
-						const item = {
-							name: fetched_item.productName,
-							id: fetched_item.productId,
-							imageUrl: fetched_item.productImage,
-							price: fetched_item.productPrice,
-						};
-						return <CollectionItem key={item.id} item={item} width={'true'} />;
-					})}
-			</PreviewContainer>
-		</CollectionPreviewContainer>
-	);
+	if (!fetched_Collection.length) {
+		return null;
+	} else {
+		return (
+			<CollectionPreviewContainer>
+				<TitleContainer
+					onClick={() => history.push(`${match.url}/${categoryName}`)}
+				>
+					{categoryName.toUpperCase()}
+				</TitleContainer>
+				<PreviewContainer>
+					{fetched_Collection
+						.filter((fetched_item, idx) => idx < 5)
+						.map((fetched_item) => {
+							const item = {
+								name: fetched_item.productName,
+								id: fetched_item.productId,
+								imageUrl: fetched_item.productImage,
+								price: fetched_item.productPrice,
+							};
+							return (
+								<CollectionItem key={item.id} item={item} width={'true'} />
+							);
+						})}
+				</PreviewContainer>
+			</CollectionPreviewContainer>
+		);
+	}
 };
 
 export default withRouter(CollectionPreview);

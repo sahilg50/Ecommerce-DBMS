@@ -12,7 +12,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser, resetUser } from './redux/user/user';
-import Seller from './components/Seller';
+import Seller from './pages/Seller/Seller';
 import axios from 'axios';
 import { SetCartitems, ResetCart } from './redux/cart/cart';
 import OrderPage from './pages/OrderPage';
@@ -111,7 +111,6 @@ const App = () => {
 					render={() =>
 						user ? (
 							<>
-								<Header />
 								<HomePage />
 							</>
 						) : (

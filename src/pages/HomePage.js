@@ -6,14 +6,17 @@ import Directory from '../components/Directory';
 // import POPUP from '../components/popUp';
 
 import LandingImage from '../components/LandingImage';
+import Header from '../components/Header';
 
 const HomePage = () => {
 	// const details = true;
 	//Details
 
 	return (
-		<HomePageContainer>
-			{/*details ? (
+		<div>
+			<Header />
+			<HomePageContainer>
+				{/*details ? (
 				<div>
 					<Directory />
 					<Brands />
@@ -23,12 +26,12 @@ const HomePage = () => {
 				<POPUP />
 			)*/}
 
-			<LandingImage />
-
-			<Directory />
-			<Brands />
-			<Footer />
-		</HomePageContainer>
+				<LandingImage />
+				<Directory />
+				<Brands />
+				<Footer />
+			</HomePageContainer>
+		</div>
 	);
 };
 

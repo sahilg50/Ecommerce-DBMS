@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 function Brands() {
 	const [categories, setCategories] = useState([]);
 
-	const Fectch_Categories = async () => {
+	const Fectch_Brand = async () => {
 		try {
-			const response = await axios.get(`http://localhost:4000/category`);
+			const response = await axios.get(`http://localhost:4000/brands`);
+			console.log(response.data);
 			setCategories(response.data);
 		} catch (error) {
 			console.log('Directory request error');
@@ -15,18 +16,17 @@ function Brands() {
 	};
 
 	useEffect(() => {
-		Fectch_Categories();
+		Fectch_Brand();
 	}, []);
 	return (
 		<Container>
 			<h2>TOP BRANDS</h2>
 			<Content>
 				{categories &&
-					categories.map(({ category_id, imageUrl, categoryName }) => (
-						<Wrap key={category_id}>
-							{category_id}
-							<Link to={`/shop/` + categoryName}>
-								<img src={imageUrl} alt={categoryName} />
+					categories.map(({ brandid, brandname, brandUrl }) => (
+						<Wrap key={brandid}>
+							<Link to={`/shop/` + brandname}>
+								<img src={brandUrl} alt={brandname} />
 							</Link>
 						</Wrap>
 					))}
@@ -66,7 +66,7 @@ const Wrap = styled.div`
 		inset: 0px;
 		display: block;
 		height: 100%;
-		object-fit: cover;
+		object-fit: contain;
 		opacity: 1;
 		position: absolute;
 		transition: opacity 500ms ease-in-out 0s;
