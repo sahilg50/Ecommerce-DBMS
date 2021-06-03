@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Orders from '../components/Orders';
+import OrderItem from '../components/OrderItem';
+// import Orders from '../components/Orders';
 
 const OrderPage = () => {
 	const [orderIds, setOrderIds] = useState(null);
@@ -26,7 +27,7 @@ const OrderPage = () => {
 
 	return (
 		<CheckoutPageContainer>
-			{orderIds ? (
+			{false ? (
 				<Main>
 					<CheckoutHeaderContainer>
 						<HeaderBlockContainer>
@@ -45,13 +46,6 @@ const OrderPage = () => {
 							<span>Date Ordered</span>
 						</HeaderBlockContainer>
 					</CheckoutHeaderContainer>
-
-					{Object.keys(orderIds).map(function (key) {
-						// console.log(orderIds[key]);
-						return (
-							<Orders key={orderIds[key].orderId} OrderId={orderIds[key]} />
-						);
-					})}
 				</Main>
 			) : (
 				<h1>NO ORDERS</h1>

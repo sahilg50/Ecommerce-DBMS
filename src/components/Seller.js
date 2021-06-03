@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './seller.styles.css';
 import styled from 'styled-components';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
@@ -85,52 +86,54 @@ const Seller = () => {
 	};
 
 	return (
-		<SellerContainer>
-			<Title>SELLER INFO</Title>
-			<span>Add a new product</span>
-			<form onSubmit={handleSubmit}>
-				<FormInput
-					type="text"
-					name="Enter Name"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					label="Product Name"
-					required
-				/>
-				<FormInput
-					type="text"
-					name="Enter Id"
-					value={id}
-					onChange={(e) => setId(e.target.value)}
-					label="Product Id"
-					required
-				/>
-				<FormInput
-					type="text"
-					name="Enter Price"
-					value={price}
-					onChange={(e) => setPrice(e.target.value)}
-					label="Price"
-					required
-				/>
-				<FormInput
-					type="url"
-					name="ImgURL"
-					value={imageUrl}
-					onChange={(e) => setImageUrl(e.target.value)}
-					label="Product Image Url"
-					required
-				/>
+		<div>
+			<SellerContainer>
+				<Title>SELLER INFO</Title>
+				<span>Add a new product</span>
+				<form onSubmit={handleSubmit}>
+					<FormInput
+						type="text"
+						name="Enter Name"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+						label="Product Name"
+						required
+					/>
+					<FormInput
+						type="text"
+						name="Enter Id"
+						value={id}
+						onChange={(e) => setId(e.target.value)}
+						label="Product Id"
+						required
+					/>
+					<FormInput
+						type="text"
+						name="Enter Price"
+						value={price}
+						onChange={(e) => setPrice(e.target.value)}
+						label="Price"
+						required
+					/>
+					<FormInput
+						type="url"
+						name="ImgURL"
+						value={imageUrl}
+						onChange={(e) => setImageUrl(e.target.value)}
+						label="Product Image Url"
+						required
+					/>
 
-				<CustomButton type="submit">ADD PRODUCT</CustomButton>
-			</form>{' '}
-			<Select
-				defaultValue={selectedOption}
-				value={selectedOption}
-				onChange={handleChange}
-				options={options}
-			/>
-		</SellerContainer>
+					<CustomButton type="submit">ADD PRODUCT</CustomButton>
+				</form>
+				<Select
+					defaultValue={selectedOption}
+					value={selectedOption}
+					onChange={handleChange}
+					options={options}
+				/>
+			</SellerContainer>
+		</div>
 	);
 };
 

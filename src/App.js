@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
+import Logo from './LoadingPageLogo.png';
 import HomePage from './pages/HomePage';
 import CheckoutPage from './pages/CheckoutPage';
 import { Route, Switch, Redirect, Link } from 'react-router-dom';
@@ -96,7 +97,7 @@ const App = () => {
 	if (loading) {
 		return (
 			<LoadContainer>
-				<Load>SHIP SHOP</Load>
+				<img src={Logo} alt="" />
 			</LoadContainer>
 		);
 	}
@@ -231,11 +232,11 @@ const LoadContainer = styled.div`
 	justify-content: center;
 `;
 
-const Load = styled.h1`
-	font-size: 150px;
-	letter-spacing: 30px;
-	margin-bottom: 50px;
-`;
+// const Load = styled.h1`
+// 	font-size: 150px;
+// 	letter-spacing: 30px;
+// 	margin-bottom: 50px;
+// `;
 
 /* 
 Seller

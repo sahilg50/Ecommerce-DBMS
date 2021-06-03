@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import Directory from '../components/Directory';
 // import POPUP from '../components/popUp';
 
+import LandingImage from '../components/LandingImage';
+
 const HomePage = () => {
 	// const details = true;
 	//Details
@@ -20,6 +22,9 @@ const HomePage = () => {
 			) : (
 				<POPUP />
 			)*/}
+
+			<LandingImage />
+
 			<Directory />
 			<Brands />
 			<Footer />
@@ -30,8 +35,9 @@ const HomePage = () => {
 export default HomePage;
 
 const HomePageContainer = styled.div`
+	margin-top: -50px;
 	height: 100vh;
-	/* background-image: linear-gradient(to top, whitesmoke, black); */
+	/* background-image: linear-gradient(to bottom, #d7e1ec, #ffffff); */
 	background-color: #f5f5f5;
 	padding-top: 80px;
 	display: flex;

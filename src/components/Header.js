@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
-import Logo from './shopping bag.png';
+import Logo from './zany.png';
 import { auth } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetUser, selectCurrentUser } from '../redux/user/user';
@@ -35,6 +35,7 @@ const Header = () => {
 			<LogoContainer to="/">
 				<img src={Logo} alt="" />
 			</LogoContainer>
+
 			<OptionsContainer>
 				{currentUser ? <OptionLink to="/">HOME</OptionLink> : null}
 				{currentUser ? <OptionLink to="/shop">SHOP</OptionLink> : null}
@@ -86,11 +87,12 @@ const HeaderContainer = styled.div`
 `;
 
 const LogoContainer = styled(Link)`
+	margin-left: -15px;
 	width: 70px;
-	padding: 25px;
+
 	img {
-		height: 50px;
-		width: 50px;
+		height: 60px;
+		width: 160px;
 	}
 `;
 
