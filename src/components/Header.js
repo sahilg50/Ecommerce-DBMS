@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Logo from './shopping bag.png';
 import { auth } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,9 @@ import CartDropDown from './cartDropDown';
 import { selectHiddenState } from '../redux/cart/cart';
 import { ResetCart } from '../redux/cart/cart';
 
-function Header() {
+const Header = () => {
+	const url = document.URL;
+	console.log(url);
 	const currentUser = useSelector(selectCurrentUser);
 	const dispatch = useDispatch();
 
@@ -51,14 +53,17 @@ function Header() {
 						SHOP
 					</OptionLink>
 				)}
-				{currentUser ? null : (
+
+				{url === 'http://localhost:3000/merchant' ? (
+					<OptionLink to="/signin">USER</OptionLink>
+				) : currentUser ? null : (
 					<OptionLink to="/merchant">MERCHANT/ADMIN</OptionLink>
 				)}
 			</OptionsContainer>
 			{useSelector(selectHiddenState) ? <CartDropDown /> : null}
 		</HeaderContainer>
 	);
-}
+};
 
 export default Header;
 

@@ -81,11 +81,13 @@ const Seller = () => {
 					label="Product Image Url"
 					required
 				/>
-				<Dropdown
-					options={options}
-					value={defaultOption}
-					placeholder="Select an option"
-				/>
+				{
+					<Dropdown
+						options={options}
+						value={defaultOption}
+						placeholder="Select an option"
+					/>
+				}
 				<CustomButton type="submit">ADD PRODUCT</CustomButton>
 			</form>
 		</SellerContainer>

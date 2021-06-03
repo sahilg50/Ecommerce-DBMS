@@ -3,19 +3,20 @@ import styled from 'styled-components';
 import './App.css';
 import HomePage from './pages/HomePage';
 import CheckoutPage from './pages/CheckoutPage';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import ShopPage from './pages/ShopPage';
 import Header from './components/Header';
 import SignInAndSignUpPage from './pages/SignInAndSignUpPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, createUserProfileDocument } from './firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser, resetUser } from './redux/user/user';
 import Seller from './components/Seller';
 import axios from 'axios';
 import { SetCartitems, ResetCart } from './redux/cart/cart';
 import OrderPage from './pages/OrderPage';
 import Merchant from './pages/MERCHANT/Merchant';
+import { selectCurrentMerchant } from './redux/merchant/merchant.reducer';
 
 const App = () => {
 	const [user, loading] = useAuthState(auth);
@@ -89,6 +90,8 @@ const App = () => {
 	);
 	dispatch(SetCartitems({ CartItems: tempCart }));
 
+	const merchant = useSelector(selectCurrentMerchant);
+
 	if (loading) {
 		return (
 			<LoadContainer>
@@ -105,10 +108,10 @@ const App = () => {
 					path="/"
 					render={() =>
 						user ? (
-							<div>
+							<>
 								<Header />
 								<HomePage />
-							</div>
+							</>
 						) : (
 							<Redirect to="/signin" />
 						)
@@ -116,32 +119,97 @@ const App = () => {
 				/>
 				<Route
 					path="/shop"
-					render={() => (user ? <ShopPage /> : <Redirect to="/signin" />)}
+					render={() =>
+						user ? (
+							<>
+								<Header />
+								<ShopPage />
+							</>
+						) : (
+							<Redirect to="/signin" />
+						)
+					}
 				/>
 				<Route
 					exact
 					path="/signin"
-					render={() => (user ? <Redirect to="/" /> : <SignInAndSignUpPage />)}
+					render={() =>
+						user ? (
+							<Redirect to="/" />
+						) : (
+							<>
+								<Header />
+								<SignInAndSignUpPage />
+							</>
+						)
+					}
 				/>
 				<Route
 					exact
 					path="/checkout"
-					render={() => (user ? <CheckoutPage /> : <Redirect to="/signin" />)}
+					render={() =>
+						user ? (
+							<>
+								<Header />
+								<CheckoutPage />
+							</>
+						) : (
+							<Redirect to="/signin" />
+						)
+					}
 				/>
-				<Route exact path="/seller" render={() => (true ? <Seller /> : null)} />
+				<Route
+					exact
+					path="/seller"
+					render={() =>
+						merchant ? (
+							<>
+								<Header />
+								<Seller />
+							</>
+						) : (
+							<Redirect to="/merchant" />
+						)
+					}
+				/>
 				<Route
 					exact
 					path="/orders"
-					render={() => (user ? <OrderPage /> : <Redirect to="/signin" />)}
+					render={() =>
+						user ? (
+							<>
+								<Header />
+								<OrderPage />{' '}
+							</>
+						) : (
+							<Redirect to="/signin" />
+						)
+					}
 				/>
 				<Route
 					exact
 					path="/merchant"
-					render={() => (true ? <Merchant /> : null)}
+					render={() =>
+						user ? (
+							<Redirect to="/" />
+						) : (
+							<>
+								<Header />
+								<Merchant />
+							</>
+						)
+					}
 				/>
 				<Route
 					path="/"
-					render={() => (true ? <h1>404 Page Not found! </h1> : null)}
+					render={() =>
+						true ? (
+							<>
+								<h1>404 Page Not found! </h1>
+								<Link to="/">Take be back</Link>
+							</>
+						) : null
+					}
 				/>
 			</Switch>
 		</div>
