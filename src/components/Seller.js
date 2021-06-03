@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import Select from 'react-select';
+import axios from 'axios';
 
 //Product Id function to be made
 
 const Seller = () => {
-	const options = ['one', 'two', 'three'];
-	const defaultOption = options[0];
-
 	const [name, setName] = useState('');
 	const [id, setId] = useState('');
 	const [price, setPrice] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
 	const [categoryId, setCategoryId] = useState('');
+	const [categories, setCategories] = useState([]);
+	const [selectedOption, setSelectedOption] = useState([]);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -42,6 +43,45 @@ const Seller = () => {
 		} catch (error) {
 			console.log('Cannot make a post request to the sever');
 		}
+	};
+
+	const Fetch_Categories = async () => {
+		try {
+			const response = await axios({
+				method: 'get',
+				url: 'http://localhost:4000/total_categories',
+
+				responseType: 'json',
+			});
+			console.log(response.data);
+			setCategories(response.data);
+		} catch (error) {
+			console.log('User fetch error');
+		}
+	};
+
+	useEffect(() => {
+		Fetch_Categories();
+	}, []);
+
+	const All_Categories = [];
+	const All_categories_id = [];
+	const options = [];
+	Object.keys(categories).map(function (key) {
+		All_Categories.push(categories[key].categoryName);
+		All_categories_id.push(categories[key].category_id);
+		options.push({
+			value: categories[key].categoryName,
+			label: categories[key].categoryName,
+		});
+		return null;
+	});
+
+	const handleChange = (selectedOption) => {
+		setSelectedOption(selectedOption);
+		setCategoryId(
+			All_categories_id[All_Categories.indexOf(selectedOption.value)]
+		);
 	};
 
 	return (
@@ -81,15 +121,15 @@ const Seller = () => {
 					label="Product Image Url"
 					required
 				/>
-				{
-					<Dropdown
-						options={options}
-						value={defaultOption}
-						placeholder="Select an option"
-					/>
-				}
+
 				<CustomButton type="submit">ADD PRODUCT</CustomButton>
-			</form>
+			</form>{' '}
+			<Select
+				defaultValue={selectedOption}
+				value={selectedOption}
+				onChange={handleChange}
+				options={options}
+			/>
 		</SellerContainer>
 	);
 };

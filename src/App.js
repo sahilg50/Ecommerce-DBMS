@@ -90,8 +90,8 @@ const App = () => {
 	);
 	dispatch(SetCartitems({ CartItems: tempCart }));
 
-	var merchant = useSelector(selectCurrentMerchant);
-	// var merchant = true;
+	// var merchant = useSelector(selectCurrentMerchant);
+	var merchant = true;
 
 	if (loading) {
 		return (
