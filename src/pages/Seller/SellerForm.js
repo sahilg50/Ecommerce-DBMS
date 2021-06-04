@@ -6,10 +6,14 @@ import CustomButton from '../../components/CustomButton';
 import 'react-dropdown/style.css';
 import Select from 'react-select';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { selectCurrentMerchant } from '../../redux/merchant/merchant.reducer';
 
 //Product Id function to be made
 
 const SellerForm = () => {
+	var userName = useSelector(selectCurrentMerchant).username;
+
 	const [name, setName] = useState('');
 	const [price, setPrice] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
@@ -27,6 +31,23 @@ const SellerForm = () => {
 	const [brandId, setBrandId] = useState('');
 	const [colorId, setColorId] = useState('');
 	const [genderId, setGenderId] = useState('');
+	const [SellerName, setSellerName] = useState('');
+
+	const Fetch_Seller_Name = async (userName) => {
+		try {
+			const response = await axios({
+				method: 'post',
+				url: 'http://localhost:4000/seller_name',
+				data: { name: userName },
+				responseType: 'json',
+			});
+			setSellerName(response.data[0].sellerName);
+		} catch (error) {
+			console.log('Seller Name cannot be fetched error!');
+		}
+	};
+
+	Fetch_Seller_Name(userName);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -199,7 +220,7 @@ const SellerForm = () => {
 		<div>
 			<SellerContainerOuter>
 				<SellerContainer>
-					<Title>SELLER INFO</Title>
+					<Title> Hello {SellerName} !</Title>
 					<h2>Add a new product</h2>
 					<form onSubmit={handleSubmit}>
 						<h3>Select Category</h3>
