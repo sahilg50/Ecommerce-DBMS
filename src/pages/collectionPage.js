@@ -11,6 +11,7 @@ const CollectionPage = ({ match }) => {
 
 	const [fetched_Collection, setFetched_Collection] = useState([]);
 	const [brandNames, setBrandNames] = useState([]);
+	console.log(brandNames);
 
 	const Fetch_Collections = async (collectionUrlParams) => {
 		try {

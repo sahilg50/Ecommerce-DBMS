@@ -8,11 +8,15 @@ import { resetUser, selectCurrentUser } from '../redux/user/user';
 import CartIcon from './cart-icon';
 import CartDropDown from './cartDropDown';
 import { selectHiddenState } from '../redux/cart/cart';
+import { withRouter } from 'react-router-dom';
 import { ResetCart } from '../redux/cart/cart';
+import { selectCurrentMerchant } from '../redux/merchant/merchant.reducer';
 
-const Header = () => {
+const Header = ({ match }) => {
 	const url = document.URL;
-	console.log(url);
+	console.log(typeof url);
+
+	const merchant = useSelector(selectCurrentMerchant);
 	const currentUser = useSelector(selectCurrentUser);
 	const dispatch = useDispatch();
 
@@ -26,10 +30,6 @@ const Header = () => {
 			.catch((error) => alert(error.message));
 	};
 
-	const handleAlert = () => {
-		alert('Please SIGN IN FIRST!');
-	};
-
 	return (
 		<HeaderContainer>
 			<LogoContainer to="/">
@@ -37,38 +37,49 @@ const Header = () => {
 			</LogoContainer>
 
 			<OptionsContainer>
+				{/* FOR LOGGED IN USER */}
 				{currentUser ? <OptionLink to="/">HOME</OptionLink> : null}
 				{currentUser ? <OptionLink to="/shop">SHOP</OptionLink> : null}
-				{/*currentUser ? <OptionLink to="/ ">CONTACT</OptionLink> : null*/}
 				{currentUser ? <OptionLink to="/orders">MY ORDERS</OptionLink> : null}
 				{currentUser ? (
-					<OptionLink as="div" onClick={handleSignOut}>
+					<OptionLink as="div" onClick={() => handleSignOut}>
 						SIGN OUT
 					</OptionLink>
 				) : null}
-
 				{currentUser ? <CartIcon /> : null}
 
-				{currentUser ? null : (
-					<OptionLink as="div" onClick={handleAlert}>
+				{/* FOR LOGGED OUT USER */}
+				{url === 'http://localhost:3000/signin' ? (
+					<OptionLink as="div" onClick={() => alert('Please SIGN IN FIRST!')}>
 						SHOP
 					</OptionLink>
-				)}
+				) : null}
+				{url === 'http://localhost:3000/signin' ? (
+					<OptionLink to="/seller_login">I'M SELLER</OptionLink>
+				) : null}
 
-				{url === 'http://localhost:3000/merchant' ? (
-					<OptionLink to="/signin">USER</OptionLink>
-				) : url === 'http://localhost:3000/seller' ? (
+				{/* FOR LOGGED OUT SELLER AND LOGGED OUT USER */}
+				{url === 'http://localhost:3000/seller_login' ? (
 					<OptionLink to="/signin">I'M USER</OptionLink>
-				) : currentUser ? null : (
-					<OptionLink to="/merchant">MERCHANT</OptionLink>
-				)}
+				) : null}
+
+				{/* FOR LOGGED IN SELLER AND LOGGED OUT USER */}
+				{url === 'http://localhost:3000/seller_homepage' ? (
+					<div>
+						<OptionLink to="/seller_homepage/my_products">
+							MY PRODUCTS
+						</OptionLink>
+
+						<OptionLink to="/signin">LOGOUT</OptionLink>
+					</div>
+				) : null}
 			</OptionsContainer>
 			{useSelector(selectHiddenState) ? <CartDropDown /> : null}
 		</HeaderContainer>
 	);
 };
 
-export default Header;
+export default withRouter(Header);
 
 const HeaderContainer = styled.div`
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

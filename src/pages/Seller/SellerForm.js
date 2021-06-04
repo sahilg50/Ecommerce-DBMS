@@ -59,6 +59,7 @@ const SellerForm = () => {
 				responseType: 'json',
 			});
 			console.log(response.data);
+			alert('Product Added Successfully!');
 		} catch (error) {
 			console.log('Seller failed to add product');
 		}

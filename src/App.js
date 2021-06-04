@@ -18,12 +18,12 @@ import { SetCartitems, ResetCart } from './redux/cart/cart';
 import OrderPage from './pages/OrderPage';
 import Merchant from './pages/MERCHANT/Merchant';
 import { selectCurrentMerchant } from './redux/merchant/merchant.reducer';
+import SellerProductsPage from './pages/Seller/SellerProductsPage';
 
 const App = () => {
 	const [user, loading] = useAuthState(auth);
 	const dispatch = useDispatch();
 	const [retrievedCartItems, setRetrievedCartItems] = useState([]);
-	const tempCart = [];
 
 	const Fetch_User = async (userDetails) => {
 		try {
@@ -77,6 +77,7 @@ const App = () => {
 		}
 	}, [user, dispatch]);
 
+	const tempCart = [];
 	retrievedCartItems.map((item) =>
 		tempCart.push({
 			id: item.productid,
@@ -174,7 +175,7 @@ const App = () => {
 
 				<Route
 					exact
-					path="/seller"
+					path="/seller_homepage"
 					render={() =>
 						merchant ? (
 							<div>
@@ -182,19 +183,19 @@ const App = () => {
 								<Seller />
 							</div>
 						) : (
-							<Redirect to="/merchant" />
+							<Redirect to="/seller_login" />
 						)
 					}
 				/>
 
 				<Route
 					exact
-					path="/merchant"
+					path="/seller_login"
 					render={() =>
 						user ? (
 							<Redirect to="/" />
 						) : merchant ? (
-							<Redirect to="/seller" />
+							<Redirect to="/seller_homepage" />
 						) : (
 							<div>
 								<Header />
@@ -203,6 +204,15 @@ const App = () => {
 						)
 					}
 				/>
+
+				<Route
+					exact
+					path="/seller_homepage/my_products"
+					render={() =>
+						merchant ? <SellerProductsPage /> : <Redirect to="/seller_login" />
+					}
+				/>
+
 				<Route
 					path="/"
 					render={() =>

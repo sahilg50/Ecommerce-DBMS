@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import CustomButton from './CustomButton';
 import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/cart/cart';
 
-const CollectionItem = ({ item, width }) => {
+const CollectionItem = ({ item }) => {
 	const { name, price, imageUrl } = item;
 
 	const dispatch = useDispatch();

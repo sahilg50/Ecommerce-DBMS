@@ -20,6 +20,7 @@ const SellerProducts = ({ item }) => {
 				responseType: 'json',
 			});
 			console.log(response.data);
+			alert('Item deleted successfully!');
 		} catch (error) {
 			console.log('Product cannot be deleted!');
 		}
@@ -35,7 +36,7 @@ const SellerProducts = ({ item }) => {
 					</h3>
 					<p>&#8377;{price}</p>
 
-					<button onClick={handleDelete(id)}> Delete Product </button>
+					<button onClick={() => handleDelete(id)}> Delete Product </button>
 				</Container>
 			</CardContainer>
 		</SellerProductsContainer>

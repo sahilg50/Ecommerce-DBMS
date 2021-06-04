@@ -126,9 +126,9 @@ const TotalContainer = styled.div`
 	font-size: 36px;
 `;
 
-const WarningContainer = styled.div`
-	text-align: center;
-	margin-top: 40px;
-	font-size: 24px;
-	color: red;
-`;
+// const WarningContainer = styled.div`
+// 	text-align: center;
+// 	margin-top: 40px;
+// 	font-size: 24px;
+// 	color: red;
+// `;
