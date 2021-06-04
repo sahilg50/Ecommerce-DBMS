@@ -1,13 +1,28 @@
+import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
 import './sellerform.styles.css';
 
 const SellerProducts = ({ item }) => {
-	const { name, price, imageUrl } = item;
+	const { id, name, price, imageUrl } = item;
 
 	var sectionStyle = {
 		backgroundSize: 'cover',
 		backgroundImage: `url(${imageUrl})`,
+	};
+
+	const handleDelete = async (id) => {
+		try {
+			const response = await axios({
+				method: 'post',
+				url: 'http://localhost:4000/seller_removes_product',
+				data: { id: id },
+				responseType: 'json',
+			});
+			console.log(response.data);
+		} catch (error) {
+			console.log('Product cannot be deleted!');
+		}
 	};
 
 	return (
@@ -20,7 +35,7 @@ const SellerProducts = ({ item }) => {
 					</h3>
 					<p>&#8377;{price}</p>
 
-					<button> Add Product </button>
+					<button onClick={handleDelete(id)}> Delete Product </button>
 				</Container>
 			</CardContainer>
 		</SellerProductsContainer>

@@ -39,7 +39,7 @@ const Header = () => {
 			<OptionsContainer>
 				{currentUser ? <OptionLink to="/">HOME</OptionLink> : null}
 				{currentUser ? <OptionLink to="/shop">SHOP</OptionLink> : null}
-				{currentUser ? <OptionLink to="/ ">CONTACT</OptionLink> : null}
+				{/*currentUser ? <OptionLink to="/ ">CONTACT</OptionLink> : null*/}
 				{currentUser ? <OptionLink to="/orders">MY ORDERS</OptionLink> : null}
 				{currentUser ? (
 					<OptionLink as="div" onClick={handleSignOut}>

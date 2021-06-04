@@ -9,16 +9,6 @@ const CollectionItem = ({ item, width }) => {
 
 	const dispatch = useDispatch();
 
-	// const Fetch_Cart_Item = (item) => {
-	// 	console.log(item);
-	// 	fetch('http://localhost:4000/Cart_Item', {
-	// 		method: 'POST',
-	// 		headers: { 'Content-Type': 'application/json' },
-	// 		body: JSON.stringify({ item: item }),
-	// 	}).then((response) => response.json());
-	// };
-	// // .then((data) => set.PostId(data.id));
-
 	const addToCart = (item) => {
 		dispatch(AddItem({ Item: item }));
 	};
@@ -32,7 +22,7 @@ const CollectionItem = ({ item, width }) => {
 			</CollectionFooterContainer>
 
 			<div>
-				<InfoButton inverted>More Info</InfoButton>
+				{/*<InfoButton inverted>More Info</InfoButton>*/}
 				<AddButton onClick={() => addToCart(item)} inverted>
 					ADD TO CART
 				</AddButton>

@@ -14,7 +14,7 @@ const OrderItem = ({ cartItem }) => {
 			<QuantityContainer>
 				<span>{quantity}</span>
 			</QuantityContainer>
-			<TextContainer>${price}</TextContainer>
+			<TextContainer>&#8377;{quantity * price}</TextContainer>
 			<RemoveButtonContainer>{newDate}</RemoveButtonContainer>
 		</CheckoutItemContainer>
 	);

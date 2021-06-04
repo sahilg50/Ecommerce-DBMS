@@ -25,7 +25,6 @@ const App = () => {
 	const [retrievedCartItems, setRetrievedCartItems] = useState([]);
 	const tempCart = [];
 
-	//Data Breach Function to be made.
 	const Fetch_User = async (userDetails) => {
 		try {
 			const response = await axios({
@@ -44,9 +43,7 @@ const App = () => {
 		try {
 			const response = await axios({
 				method: 'get',
-				// headers: { 'Content-Type': 'application/json' },
 				url: 'http://localhost:4000/retrieve_cart_items',
-				// data: 'Retrieve Request Active',
 				responseType: 'json',
 			});
 			console.log(response.data);

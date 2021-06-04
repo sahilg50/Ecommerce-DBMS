@@ -2,25 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import OrderItem from '../components/OrderItem';
-// import Orders from '../components/Orders';
 
 const OrderPage = () => {
-	// const [orderIds, setOrderIds] = useState(null);
 	const [orderItems, setOrderItems] = useState([]);
-
-	// const Fetch_OrderIds = async () => {
-	// 	try {
-	// 		const response = await axios({
-	// 			method: 'get',
-	// 			url: 'http://localhost:4000/get_distinct_orders',
-	// 			responseType: 'json',
-	// 		});
-	// 		console.log(response.data);
-	// 		setOrderIds(response.data);
-	// 	} catch (error) {
-	// 		console.log('Order IDs Cannot Be Fetched');
-	// 	}
-	// };
 
 	const Fetch_OrderItems = async () => {
 		try {
