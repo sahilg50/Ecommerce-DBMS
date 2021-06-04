@@ -28,7 +28,7 @@ const CollectionItem = ({ item, width }) => {
 			<BackgroundImage className="image" imageUrl={imageUrl} />
 			<CollectionFooterContainer>
 				<NameContainer>{name}</NameContainer>
-				<PriceContainer>{price}$</PriceContainer>
+				<PriceContainer>&#8377; {price}</PriceContainer>
 			</CollectionFooterContainer>
 
 			<div>

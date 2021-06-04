@@ -70,9 +70,10 @@ const TitleContainer = styled.h1`
 	font-size: 40px;
 	margin-bottom: 20px;
 	cursor: pointer;
-	color: whitesmoke;
+	color: black;
 	&:hover {
-		color: red;
+		color: #fdb302;
+		cursor: pointer;
 	}
 
 	width: fit-content;

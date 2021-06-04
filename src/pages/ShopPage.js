@@ -23,6 +23,7 @@ export default withRouter(ShopPage);
 
 const Shoppage = styled.div`
 	padding: 80px 30px 10px 30px;
-	background-image: linear-gradient(to top, whitesmoke, black);
+	/* background-image: linear-gradient(to top, whitesmoke, black); */
+	background-color: #f5f5f5;
 	width: 100vw;
 `;

@@ -11,26 +11,38 @@ import axios from 'axios';
 
 const SellerForm = () => {
 	const [name, setName] = useState('');
-	const [id, setId] = useState('');
 	const [price, setPrice] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
-	const [categoryId, setCategoryId] = useState('');
 	const [categories, setCategories] = useState([]);
-	const [selectedOption, setSelectedOption] = useState([]);
+	const [brandNames, setBrandNames] = useState([]);
+	const [ColorNames, setColorNames] = useState([]);
+	const [Gender, setGender] = useState([]);
+
+	const [selectedCategory, setSelectedCategory] = useState('Select Category');
+	const [selectedBrand, setSelectedBrand] = useState('Select Brand');
+	const [selectedColor, setSelectedColor] = useState('Select Color');
+	const [selectedGender, setSelectedGender] = useState('Gender');
+
+	const [categoryId, setCategoryId] = useState('');
+	const [brandId, setBrandId] = useState('');
+	const [colorId, setColorId] = useState('');
+	const [genderId, setGenderId] = useState('');
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		const itemDetails = {
-			productId: id,
 			productName: name,
 			productPrice: price,
 			productImage: imageUrl,
 			categoryId: categoryId,
+			brandid: brandId,
+			colorid: colorId,
+			genderid: genderId,
 		};
 
 		try {
-			fetch(`http://localhost:4000/item`, {
+			fetch(`http://localhost:4000/seller_adding_product`, {
 				method: 'post',
 				headers: {
 					'Content-Type': 'application/json',
@@ -60,28 +72,127 @@ const SellerForm = () => {
 		}
 	};
 
-	useEffect(() => {
-		Fetch_Categories();
-	}, []);
-
 	const All_Categories = [];
 	const All_categories_id = [];
-	const options = [];
+	const Categoryoptions = [];
 	Object.keys(categories).map(function (key) {
 		All_Categories.push(categories[key].categoryName);
 		All_categories_id.push(categories[key].category_id);
-		options.push({
+		Categoryoptions.push({
 			value: categories[key].categoryName,
 			label: categories[key].categoryName,
 		});
 		return null;
 	});
 
-	const handleChange = (selectedOption) => {
-		setSelectedOption(selectedOption);
+	const Fetch_Brands = async () => {
+		try {
+			const response = await axios({
+				method: 'get',
+				url: 'http://localhost:4000/brands',
+				responseType: 'json',
+			});
+			console.log(response.data);
+			setBrandNames(response.data);
+		} catch (error) {
+			console.log('Seller Cannot Retrieve Brands');
+		}
+	};
+
+	const All_Brands = [];
+	const All_Brands_id = [];
+	const Brandoptions = [];
+	Object.keys(brandNames).map(function (key) {
+		All_Brands.push(brandNames[key].brandname);
+		All_Brands_id.push(brandNames[key].brandid);
+		Brandoptions.push({
+			value: brandNames[key].brandname,
+			label: brandNames[key].brandname,
+		});
+		return null;
+	});
+
+	const Fetch_Colors = async () => {
+		try {
+			const response = await axios({
+				method: 'get',
+				url: 'http://localhost:4000/colors',
+				responseType: 'json',
+			});
+			console.log(response.data);
+			setColorNames(response.data);
+		} catch (error) {
+			console.log('Seller Cannot Retrieve Colors');
+		}
+	};
+
+	const All_Colors = [];
+	const All_Colors_id = [];
+	const Coloroptions = [];
+	Object.keys(ColorNames).map(function (key) {
+		All_Colors.push(ColorNames[key].colorName);
+		All_Colors_id.push(ColorNames[key].colorid);
+		Coloroptions.push({
+			value: ColorNames[key].colorName,
+			label: ColorNames[key].colorName,
+		});
+		return null;
+	});
+
+	const Fetch_Genders = async () => {
+		try {
+			const response = await axios({
+				method: 'get',
+				url: 'http://localhost:4000/gender',
+				responseType: 'json',
+			});
+			console.log(response.data);
+			setGender(response.data);
+		} catch (error) {
+			console.log('Seller Cannot Retrieve Gender');
+		}
+	};
+
+	const All_Gender = [];
+	const All_Gender_id = [];
+	const Genderoptions = [];
+	Object.keys(Gender).map(function (key) {
+		All_Gender.push(Gender[key].gender);
+		All_Gender_id.push(Gender[key].genderId);
+		Genderoptions.push({
+			value: Gender[key].gender,
+			label: Gender[key].gender,
+		});
+		return null;
+	});
+
+	useEffect(() => {
+		Fetch_Categories();
+		Fetch_Brands();
+		Fetch_Colors();
+		Fetch_Genders();
+	}, []);
+
+	const handleCategory = (SelectedCategory) => {
+		setSelectedCategory(SelectedCategory);
 		setCategoryId(
-			All_categories_id[All_Categories.indexOf(selectedOption.value)]
+			All_categories_id[All_Categories.indexOf(SelectedCategory.value)]
 		);
+	};
+
+	const handleBrands = (selectedBrand) => {
+		setSelectedBrand(selectedBrand);
+		setBrandId(All_Brands_id[All_Brands.indexOf(selectedBrand.value)]);
+	};
+
+	const handleColor = (selectedColor) => {
+		setSelectedColor(selectedColor);
+		setColorId(All_Colors_id[All_Colors.indexOf(selectedColor.value)]);
+	};
+
+	const handleGender = (selectedGender) => {
+		setSelectedGender(selectedGender);
+		setGenderId(All_Gender_id[All_Gender.indexOf(selectedGender.value)]);
 	};
 
 	return (
@@ -89,13 +200,38 @@ const SellerForm = () => {
 			<SellerContainerOuter>
 				<SellerContainer>
 					<Title>SELLER INFO</Title>
-					<span>Add a new product</span>
+					<h2>Add a new product</h2>
 					<form onSubmit={handleSubmit}>
+						<h3>Select Category</h3>
 						<Select
-							defaultValue={selectedOption}
-							value={selectedOption}
-							onChange={handleChange}
-							options={options}
+							defaultValue={selectedCategory}
+							value={selectedCategory}
+							onChange={handleCategory}
+							options={Categoryoptions}
+						/>
+
+						<h3>Select Brand</h3>
+						<Select
+							defaultValue={selectedBrand}
+							value={selectedBrand}
+							onChange={handleBrands}
+							options={Brandoptions}
+						/>
+
+						<h3>Select Color</h3>
+						<Select
+							defaultValue={selectedColor}
+							value={selectedColor}
+							onChange={handleColor}
+							options={Coloroptions}
+						/>
+
+						<h3>Select Gender</h3>
+						<Select
+							defaultValue={selectedGender}
+							value={selectedGender}
+							onChange={handleGender}
+							options={Genderoptions}
 						/>
 
 						<FormInput
@@ -106,14 +242,7 @@ const SellerForm = () => {
 							label="Product Name"
 							required
 						/>
-						<FormInput
-							type="text"
-							name="Enter Id"
-							value={id}
-							onChange={(e) => setId(e.target.value)}
-							label="Product Id"
-							required
-						/>
+
 						<FormInput
 							type="text"
 							name="Enter Price"

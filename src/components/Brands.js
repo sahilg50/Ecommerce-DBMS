@@ -7,7 +7,7 @@ function Brands() {
 
 	const Fectch_Brand = async () => {
 		try {
-			const response = await axios.get(`http://localhost:4000/brands`);
+			const response = await axios.get(`http://localhost:4000/top_brands`);
 			console.log(response.data);
 			setCategories(response.data);
 		} catch (error) {

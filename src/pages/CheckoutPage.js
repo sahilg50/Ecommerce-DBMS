@@ -1,14 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { TotalPrice, selectCartItems } from '../redux/cart/cart';
+import { useDispatch, useSelector } from 'react-redux';
+import { TotalPrice, selectCartItems, ResetCart } from '../redux/cart/cart';
 import CheckOutItem from '../components/CheckOutItem';
 // import StripCheckoutButton from '../components/Stripe';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-const CheckoutPage = () => {
+const CheckoutPage = ({ history, match }) => {
 	var totalPrice = useSelector(TotalPrice);
 	const cartItems = useSelector(selectCartItems);
+	const dispatch = useDispatch();
+
+	const Redirect_to_shop = () => {
+		history.push('/shop');
+	};
 
 	const handlePayments = async () => {
 		try {
@@ -22,6 +28,7 @@ const CheckoutPage = () => {
 				responseType: 'json',
 			});
 			console.log(response.data);
+			alert('Your order is placed Successfully');
 		} catch (error) {
 			console.log('cart Items cannot be retrieved');
 		}
@@ -32,7 +39,9 @@ const CheckoutPage = () => {
 				url: 'http://localhost:4000/empty_the_cart',
 				responseType: 'json',
 			});
+			dispatch(ResetCart());
 			console.log(response.data);
+			Redirect_to_shop();
 		} catch (error) {
 			console.log('cart cannot be emptied');
 		}
@@ -41,7 +50,7 @@ const CheckoutPage = () => {
 	return (
 		<CheckoutPageContainer>
 			{totalPrice ? (
-				<>
+				<div>
 					<CheckoutHeaderContainer>
 						<HeaderBlockContainer>
 							<span>Product</span>
@@ -71,15 +80,15 @@ const CheckoutPage = () => {
 			<StripCheckoutButton price={totalPrice} />*/}
 
 					<button onClick={handlePayments}>Payment</button>
-				</>
+				</div>
 			) : (
-				<h1>Your cart is empty :( </h1>
+				<h1>Add items to your Bag! </h1>
 			)}
 		</CheckoutPageContainer>
 	);
 };
 
-export default CheckoutPage;
+export default withRouter(CheckoutPage);
 
 const CheckoutPageContainer = styled.div`
 	width: 55%;

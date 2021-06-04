@@ -91,8 +91,8 @@ const App = () => {
 	);
 	dispatch(SetCartitems({ CartItems: tempCart }));
 
-	var merchant = useSelector(selectCurrentMerchant);
-	// var merchant = true;
+	// var merchant = useSelector(selectCurrentMerchant);
+	var merchant = true;
 
 	if (loading) {
 		return (
@@ -110,9 +110,9 @@ const App = () => {
 					path="/"
 					render={() =>
 						user ? (
-							<>
+							<div>
 								<HomePage />
-							</>
+							</div>
 						) : (
 							<Redirect to="/signin" />
 						)
@@ -122,10 +122,10 @@ const App = () => {
 					path="/shop"
 					render={() =>
 						user ? (
-							<>
+							<div>
 								<Header />
 								<ShopPage />
-							</>
+							</div>
 						) : (
 							<Redirect to="/signin" />
 						)
@@ -138,10 +138,10 @@ const App = () => {
 						user ? (
 							<Redirect to="/" />
 						) : (
-							<>
+							<div>
 								<Header />
 								<SignInAndSignUpPage />
-							</>
+							</div>
 						)
 					}
 				/>
@@ -150,10 +150,10 @@ const App = () => {
 					path="/checkout"
 					render={() =>
 						user ? (
-							<>
+							<div>
 								<Header />
 								<CheckoutPage />
-							</>
+							</div>
 						) : (
 							<Redirect to="/signin" />
 						)
@@ -165,10 +165,10 @@ const App = () => {
 					path="/orders"
 					render={() =>
 						user ? (
-							<>
+							<div>
 								<Header />
 								<OrderPage />
-							</>
+							</div>
 						) : (
 							<Redirect to="/signin" />
 						)
@@ -180,10 +180,10 @@ const App = () => {
 					path="/seller"
 					render={() =>
 						merchant ? (
-							<>
+							<div>
 								<Header />
 								<Seller />
-							</>
+							</div>
 						) : (
 							<Redirect to="/merchant" />
 						)
@@ -199,10 +199,10 @@ const App = () => {
 						) : merchant ? (
 							<Redirect to="/seller" />
 						) : (
-							<>
+							<div>
 								<Header />
 								<Merchant />
-							</>
+							</div>
 						)
 					}
 				/>
@@ -210,10 +210,10 @@ const App = () => {
 					path="/"
 					render={() =>
 						true ? (
-							<>
+							<div>
 								<h1>404 Page Not found! </h1>
 								<Link to="/">Take be back</Link>
-							</>
+							</div>
 						) : null
 					}
 				/>

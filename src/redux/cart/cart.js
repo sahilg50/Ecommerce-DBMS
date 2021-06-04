@@ -38,6 +38,8 @@ const cartSlice = createSlice({
 		ResetCart: (state) => {
 			state.hidden = false;
 			state.cartItems = [];
+			state.cartAmount = 0;
+			state.totalItems = 0;
 		},
 		ClearCartItem: (state, action) => {
 			state.cartItems = clearCartItem(state.cartItems, action.payload.ID);
