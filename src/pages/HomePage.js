@@ -24,9 +24,7 @@ const HomePage = () => {
 export default HomePage;
 
 const HomePageContainer = styled.div`
-	margin-top: -50px;
 	height: 100vh;
-	/* background-image: linear-gradient(to bottom, #d7e1ec, #ffffff); */
 	background-color: #f5f5f5;
 	padding-top: 80px;
 	display: flex;

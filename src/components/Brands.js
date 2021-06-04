@@ -39,7 +39,6 @@ export default Brands;
 
 const Container = styled.div`
 	padding: 0 30px 30px 30px;
-
 	width: 100vw;
 `;
 

@@ -60,7 +60,7 @@ const Header = () => {
 				) : url === 'http://localhost:3000/seller' ? (
 					<OptionLink to="/signin">I'M USER</OptionLink>
 				) : currentUser ? null : (
-					<OptionLink to="/merchant">MERCHANT/ADMIN</OptionLink>
+					<OptionLink to="/merchant">MERCHANT</OptionLink>
 				)}
 			</OptionsContainer>
 			{useSelector(selectHiddenState) ? <CartDropDown /> : null}
@@ -71,12 +71,12 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.div`
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 	height: 70px;
-	/* background-color: #121212; */
 	background-color: #bfbebc;
 	display: flex;
 	flex-direction: row;
