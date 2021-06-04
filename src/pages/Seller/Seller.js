@@ -8,7 +8,9 @@ const Seller = ({ history, match }) => {
 	return (
 		<SellerContainer>
 			<SellerForm />
-
+			{/*<button onClick={() => history.push('/seller/my_products')}>
+				VIEW MY PRODUCTS
+	</button>*/}
 			<SellerProductsPage />
 		</SellerContainer>
 	);

@@ -63,9 +63,9 @@ const Footer = () => {
 					<Row>
 						<Column>
 							<Heading>About Us</Heading>
-							<FooterLink href="#">Aim</FooterLink>
-							<FooterLink href="#">Vision</FooterLink>
-							<FooterLink href="#">Testimonials</FooterLink>
+							<FooterLink href="#">46,Global Enclave</FooterLink>
+							<FooterLink href="#">Punjab</FooterLink>
+							<FooterLink href="#">India</FooterLink>
 						</Column>
 
 						<Column>
