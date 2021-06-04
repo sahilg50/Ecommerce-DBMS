@@ -137,11 +137,10 @@ const CollectionPageContainer = styled.div`
 const CollectionTitle = styled.h2`
 	font-size: 38px;
 	margin: 0 auto 30px;
-	color: whitesmoke;
+	color: black;
 	font-size: 40px;
 	&:hover {
 		cursor: pointer;
-		color: red;
 	}
 `;
 
