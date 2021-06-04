@@ -1,19 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import HomePageImage from '../HomePageImage.jpg';
+import './sellerform.styles.css';
 
-const SellerProducts = () => {
+const SellerProducts = ({ item }) => {
+	const { name, price, imageUrl } = item;
+
+	var sectionStyle = {
+		backgroundSize: 'cover',
+		backgroundImage: `url(${imageUrl})`,
+	};
+
 	return (
 		<SellerProductsContainer>
 			<CardContainer>
-				<ImageContainer
-					style={{ backgroundImage: `url(${HomePageImage})` }}
-				></ImageContainer>
+				<ImageContainer style={sectionStyle}></ImageContainer>
 				<Container>
 					<h3>
-						<b>John Doe</b>
+						<b>{name}</b>
 					</h3>
-					<p>Architect & Engineer</p>
+					<p>&#8377;{price}</p>
 
 					<button> Add Product </button>
 				</Container>
@@ -24,9 +29,7 @@ const SellerProducts = () => {
 
 export default SellerProducts;
 
-const SellerProductsContainer = styled.div`
-	margin-left: 100px;
-`;
+const SellerProductsContainer = styled.div``;
 
 const CardContainer = styled.div`
 	width: 240px;
