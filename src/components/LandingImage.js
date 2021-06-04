@@ -1,18 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import HomePageImage from '../pages/HomePageImage.jpg';
 
-const LandingImage = () => {
+const LandingImage = ({ history, match }) => {
 	return (
 		<LandingImageContainer style={{ backgroundImage: `url(${HomePageImage})` }}>
 			<Title>SUMMER PLANS </Title>
 			<SubTitle>pending</SubTitle>
-			<Button>SHOP SUMMER DRESSES</Button>
+			<Button onClick={() => history.push('/shop/dress')}>
+				SHOP SUMMER DRESSES
+			</Button>
 		</LandingImageContainer>
 	);
 };
 
-export default LandingImage;
+export default withRouter(LandingImage);
 
 const LandingImageContainer = styled.div`
 	display: flex;

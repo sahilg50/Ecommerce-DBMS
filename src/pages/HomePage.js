@@ -3,29 +3,15 @@ import styled from 'styled-components';
 import Brands from '../components/Brands';
 import Footer from '../components/Footer';
 import Directory from '../components/Directory';
-// import POPUP from '../components/popUp';
 
 import LandingImage from '../components/LandingImage';
 import Header from '../components/Header';
 
 const HomePage = () => {
-	// const details = true;
-	//Details
-
 	return (
 		<div>
 			<Header />
 			<HomePageContainer>
-				{/*details ? (
-				<div>
-					<Directory />
-					<Brands />
-					<Footer />
-				</div>
-			) : (
-				<POPUP />
-			)*/}
-
 				<LandingImage />
 				<Directory />
 				<Brands />
