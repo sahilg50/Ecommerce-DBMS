@@ -49,33 +49,38 @@ const SellerForm = () => {
 
 	Fetch_Seller_Name(userName);
 
+	const Seller_Adding_Product = async (Details) => {
+		try {
+			const response = await axios({
+				method: 'post',
+				// headers: { 'Content-Type': 'application/json' },
+				url: 'http://localhost:4000/seller_adding_product',
+				data: Details,
+				responseType: 'json',
+			});
+			console.log(response.data);
+		} catch (error) {
+			console.log('Seller failed to add product');
+		}
+	};
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		const itemDetails = {
-			productName: name,
-			productPrice: price,
-			productImage: imageUrl,
-			categoryId: categoryId,
-			brandid: brandId,
-			colorid: colorId,
-			genderid: genderId,
+		const Details = {
+			itemDetails: {
+				productName: name,
+				productPrice: price,
+				productImage: imageUrl,
+				categoryId: categoryId,
+				brandid: brandId,
+				colorid: colorId,
+				genderid: genderId,
+			},
+			sellerusername: userName,
 		};
 
-		try {
-			fetch(`http://localhost:4000/seller_adding_product`, {
-				method: 'post',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-				body: JSON.stringify(itemDetails),
-			})
-				.then((response) => response.json())
-				.then((data) => console.log(data));
-		} catch (error) {
-			console.log('Cannot make a post request to the sever');
-		}
+		Seller_Adding_Product(Details);
 	};
 
 	const Fetch_Categories = async () => {
