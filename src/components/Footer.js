@@ -54,7 +54,7 @@ const Footer = () => {
 	};
 
 	return (
-		<FooterContainer>
+		<FooterContainer id="contact">
 			<Slide left duration={1100}>
 				{/*<h1 style={{ color: 'green', textAlign: 'center', marginTop: '-50px' }}>
 				Contact Us

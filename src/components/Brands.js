@@ -54,13 +54,12 @@ const Content = styled.div`
 
 const Wrap = styled.div`
 	padding-top: 56.25%;
-	box-shadow: rgb(0 0 0 / 10%) 0px 40px 58px -16px,
-		rgb(0 0 0 / 10%) 0px 30px 22px -10px;
+	box-shadow: rgb(0 0 0 / 10%) 0px 5px 5px 0px;
 	cursor: pointer;
 	overflow: hidden;
 	position: relative;
 	transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-	border: 3px solid rgba(249, 249, 249, 0.1);
+	border: 1px solid rgba(249, 249, 249, 0.1);
 	img {
 		inset: 0px;
 		display: block;
@@ -74,8 +73,8 @@ const Wrap = styled.div`
 		top: 0;
 	}
 	&:hover {
-		box-shadow: rgb(0 0 0 / 30%) 0px 40px 58px -16px,
-			rgb(0 0 0 / 30%) 0px 30px 22px -10px;
+		box-shadow: rgb(0 0 0 / 10%) 0px 10px 7px 0px,
+			rgb(0 0 0 / 10%) 0px 10px 7px 0px;
 		transform: scale(1.04);
 		border-color: rgba(249, 249, 249, 0.3);
 	}

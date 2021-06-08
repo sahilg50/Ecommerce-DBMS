@@ -41,8 +41,9 @@ const Header = ({ match }) => {
 				{currentUser ? <OptionLink to="/">HOME</OptionLink> : null}
 				{currentUser ? <OptionLink to="/shop">SHOP</OptionLink> : null}
 				{currentUser ? <OptionLink to="/orders">MY ORDERS</OptionLink> : null}
+				{currentUser ? <CONTACT href="#contact">CONTACT</CONTACT> : null}
 				{currentUser ? (
-					<OptionLink as="div" onClick={() => handleSignOut}>
+					<OptionLink as="div" onClick={handleSignOut}>
 						SIGN OUT
 					</OptionLink>
 				) : null}
@@ -119,6 +120,20 @@ const OptionsContainer = styled.div`
 `;
 
 const OptionLink = styled(Link)`
+	padding: 10px 15px;
+	cursor: pointer;
+	color: white;
+	border-radius: 2px;
+
+	margin-right: 10px;
+	&:hover {
+		background-color: rgba(253, 179, 2, 0.6);
+
+		color: black;
+	}
+`;
+
+const CONTACT = styled.a`
 	padding: 10px 15px;
 	cursor: pointer;
 	color: white;
