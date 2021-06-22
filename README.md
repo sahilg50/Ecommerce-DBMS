@@ -2,6 +2,12 @@
 
 We're building an e-commerce website that will allow the local vendors and sellers to sell their products online. The website will enable sellers to go live and showcase their products. Now before showing the product, the seller would read out the id of the particular item. This will help the machine learning algorithm to detect the item id. Now the IDs of the existing items would be checked against the detected IDs. If the item already exists, then the links to the particular items would be displayed alongside the live session. The live session would be saved on the website itself so that if a user views a product whose live session exists, then the user can watch the live session and get a better understanding of the product. The application will also include a recommender system that will provide recommendations to users based upon their interest and the products they view.
 
+
+
+https://user-images.githubusercontent.com/56653026/123007169-5d7f0680-d3d6-11eb-92ca-0ecf927ce171.mp4
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
